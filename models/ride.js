@@ -1,29 +1,16 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// GeoSchema for rides
+// Creates a LineString Schema for the bike rides
 
-const GeoSchema = new mongoose.Schema({
-  type: {
-    type: String,
-    default: "Point"
+const RideSchema = new Schema({
+  name: { type: String, required: true },
+  geo: {
+    type: { type: String, default: "LineString" },
+    coordinates: Array
   },
-  coordinates: {
-    type: [Number],
-    index: "2dsphere"
-  }
-});
-
-const RideSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Ride name is required"],
-    maxlength: 30
-  },
-  duration: {
-    type: Date,
-    default: Date.now
-  },
-  geometry: GeoSchema
+  created_at: { type: Date, default: Date.now },
+  updated_at: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("Ride", RideSchema);
