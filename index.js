@@ -11,10 +11,9 @@ const flash = require("connect-flash");
 //Render Routes
 var indexRoutes = require("./Routes/index");
 
-//DB Connect - connecting to a remote DB on MongoDB Atlas - TODO:  Change to local DB and/or remove password
-//mongodb+srv://devsprout:chinguproject123@chingu-yvgyh.mongodb.net/test?retryWrites=true&w=majority
+//DB Connect - connecting to a remote DB on MongoDB Atlas
 //process.env.DATABASEURL
-mongoose.connect("mongodb+srv://devsprout:chinguproject123@chingu-yvgyh.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DATABASEURL, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useFindAndModify: false
