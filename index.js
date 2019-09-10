@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 app.use(morgan("dev"));
 
 // Import routes
-const rideRoutes = require("./routes/ride"),
+const rideRoutes = require("./routes/rides"),
       indexRoutes = require("./routes/index");
 
 // Connecting to the database
@@ -29,8 +29,7 @@ app.use(express.static(__dirname + "/public"));{
 }
 // Routes
 app.use("/", indexRoutes);
-
-app.use("/api", rideRoutes);
+app.use("/rides", rideRoutes);
 
 // Setting up the port
 const PORT = keys.PORT;

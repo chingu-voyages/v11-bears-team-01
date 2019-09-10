@@ -1,4 +1,4 @@
-const Ride = require("../models/ride");
+const Ride = require("../models/rides");
 
 exports.createRide = (req, res) => {
   console.log("req.body", req.body);

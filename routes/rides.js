@@ -3,10 +3,9 @@ const router = express.Router();
 
 const { createRide } = require("../controllers/rides");
 
+//router.post("/createRide", createRide);
 router.get("/", (req,res) => {
-	res.render("landing");
+    res.render("rides/index");
 });
-
-//Insert Auth routes here
 
 module.exports = router;
