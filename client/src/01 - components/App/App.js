@@ -21,7 +21,6 @@ function App() {
           <Route exact path="/sign-up" component={SignUp} />
         </Router>
       </div>
-      ;
     </AuthProvider>
   );
 }
