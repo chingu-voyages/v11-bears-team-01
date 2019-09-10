@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthProvider } from "../../02 - context/AuthContext";
+import { AuthProvider } from "../../context/AuthContext";
 import {
   BrowserRouter as Router,
   Route,
