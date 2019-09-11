@@ -3,12 +3,16 @@ import React, { createContext, useMemo, useReducer } from "react";
 export const AuthContext = createContext();
 
 const initialState = {
-  //add state here
+  loading: false
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    //add cases here
+    case "LOADING":
+      return {
+        ...state,
+        loading: action.payload
+      };
     default:
       return state;
   }

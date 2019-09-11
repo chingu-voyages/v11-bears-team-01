@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Landing from "../Landing/index";
 import {
   Title,
-  Subtitle,
+  StyledH4,
   Form,
   SubmitButton,
   Input
-} from "../shared/styles/form-elements";
-import useHandleInputs from "../shared/custom-hooks/useHandleInputs";
+} from "../../styles/form-elements";
+import useHandleInputs from "../../utils/useHandleInputs";
+import useHandleSubmit from "../../utils/useHandleSubmit";
+import cb from "./submitCallback";
 
 const initialState = {
   name: "",
@@ -17,12 +19,14 @@ const initialState = {
   password2: ""
 };
 
-export default () => {
+const SignUp = props => {
   const { handleChange, inputs } = useHandleInputs(initialState);
+  const { handleSubmit } = useHandleSubmit(() => cb(props));
+
   return (
     <Landing>
       <Title>Sign up</Title>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           placeholder="Enter your username"
           type="text"
@@ -53,9 +57,11 @@ export default () => {
         ></Input>
         <SubmitButton type="submit">Sign up</SubmitButton>
       </Form>
-      <Subtitle>
+      <StyledH4>
         Don't have an account? <Link to="/login">Sign in</Link>
-      </Subtitle>
+      </StyledH4>
     </Landing>
   );
 };
+
+export default withRouter(SignUp);

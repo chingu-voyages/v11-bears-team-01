@@ -12,6 +12,7 @@ export default initialState => {
   };
   return {
     handleChange,
-    inputs
+    inputs,
+    setInputs
   };
 };

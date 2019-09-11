@@ -21,7 +21,7 @@ export const Title = styled.h1`
   color: #131e41;
 `;
 
-export const Subtitle = styled.h4`
+export const StyledH4 = styled.h4`
   font-size: 14px;
   line-height: 22px;
   font-weight: 500;

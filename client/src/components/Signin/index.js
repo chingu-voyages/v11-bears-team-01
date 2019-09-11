@@ -1,26 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Landing from "../Landing/index";
 import {
   Form,
   Title,
-  Subtitle,
+  StyledH4,
   SubmitButton,
   Input
-} from "../shared/styles/form-elements";
-import useHandleInputs from "../shared/custom-hooks/useHandleInputs";
+} from "../../styles/form-elements";
+import useHandleInputs from "../../utils/useHandleInputs";
+import useHandleSubmit from "../../utils/useHandleSubmit";
+import cb from "./submitCallback";
 
 const initialState = {
   email: "",
   password: ""
 };
 
-export default () => {
+const SignIn = props => {
   const { handleChange, inputs } = useHandleInputs(initialState);
+  const { handleSubmit } = useHandleSubmit(() => cb(props));
+
   return (
     <Landing>
       <Title>Log in</Title>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input
           placeholder="Enter your email"
           type="email"
@@ -37,9 +41,11 @@ export default () => {
         ></Input>
         <SubmitButton type="submit">Log in</SubmitButton>
       </Form>
-      <Subtitle>
+      <StyledH4>
         Don't have an account? <Link to="/sign-up">Sign up</Link>
-      </Subtitle>
+      </StyledH4>
     </Landing>
   );
 };
+
+export default withRouter(SignIn);
