@@ -1,16 +1,20 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useContext } from "react";
+import { withRouter } from "react-router-dom";
 import Landing from "../Landing/index";
 import {
   Form,
   Title,
   StyledH4,
+  StyledLink,
   SubmitButton,
-  Input
+  Input,
+  Error
 } from "../../styles/form-elements";
 import useHandleInputs from "../../utils/useHandleInputs";
 import useHandleSubmit from "../../utils/useHandleSubmit";
 import cb from "./submitCallback";
+import { errorMessageContainer } from "../../styles/errorMessageContainer";
+import { AuthContext } from "../../context/AuthContext";
 
 const initialState = {
   email: "",
@@ -18,8 +22,10 @@ const initialState = {
 };
 
 const SignIn = props => {
+  const { dispatch, store } = useContext(AuthContext);
   const { handleChange, inputs } = useHandleInputs(initialState);
-  const { handleSubmit } = useHandleSubmit(() => cb(props));
+  const { handleSubmit } = useHandleSubmit(() => cb(inputs, dispatch));
+  const { signInErrors: errors } = store;
 
   return (
     <Landing>
@@ -31,18 +37,26 @@ const SignIn = props => {
           name="email"
           value={inputs.email}
           onChange={handleChange}
+          error={errors.email}
         ></Input>
+        <span style={errorMessageContainer}>
+          <Error>{errors.email}</Error>
+        </span>
         <Input
           placeholder="Enter your password"
           type="password"
           name="password"
           value={inputs.password}
           onChange={handleChange}
+          error={errors.password}
         ></Input>
+        <span style={errorMessageContainer}>
+          <Error>{errors.password}</Error>
+        </span>
         <SubmitButton type="submit">Log in</SubmitButton>
       </Form>
       <StyledH4>
-        Don't have an account? <Link to="/sign-up">Sign up</Link>
+        Don't have an account? <StyledLink to="/sign-up">Sign up</StyledLink>
       </StyledH4>
     </Landing>
   );

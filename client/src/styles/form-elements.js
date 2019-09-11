@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Form = styled.form`
   padding: 45px 36px;
@@ -27,6 +28,12 @@ export const StyledH4 = styled.h4`
   font-weight: 500;
   color: #131e41;
   margin-top: 42px;
+`;
+
+export const StyledLink = styled(Link)`
+  &:active {
+    color: #1c01ff;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -59,12 +66,22 @@ export const Input = styled.input`
   height: 44px;
   border-radius: 2px;
   background: #fcfcff;
-  border: ${props => (props.error ? "1px solid #FD1941" : "1px solid #cdcee4")};
+  border: 1px solid;
+  border-color: ${props => (props.error ? "#FD1941" : "#cdcee4")};
   caret-color: #1c01ff;
-  margin: 0px 0px 20px 0px;
+  margin: 0px 0px 0px 0px;
 
   &:focus {
     border-color: #1c01ff;
     outline: none;
   }
+`;
+
+export const Error = styled.span`
+  color: #fd1941;
+  font-size: 10.5px;
+  font-weight: 400;
+  text-align: left;
+  font-family: "Archivo", sans-serif;
+  letter-spacing: 0.1px;
 `;
