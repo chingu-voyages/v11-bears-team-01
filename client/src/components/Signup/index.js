@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Landing from "../Landing/index";
-import { Title, Subtitle, Form, SubmitButton, Input } from "../Form/styles";
+import {
+  Title,
+  Subtitle,
+  Form,
+  SubmitButton,
+  Input
+} from "../shared/styles/form-elements";
 
 export default () => {
   return (

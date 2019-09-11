@@ -1,14 +1,14 @@
 import React from "react";
 import { AuthWrapper, Landing, LandingLayout } from "./styles";
 
-export default props => {
+export default ({children}) => {
   return (
     <LandingLayout>
       <Landing>
         <h2>This is an App.</h2>
         <h3>A good one.</h3>
       </Landing>
-      <AuthWrapper>{props.children}</AuthWrapper>
+      <AuthWrapper>{children}</AuthWrapper>
     </LandingLayout>
   );
 };
