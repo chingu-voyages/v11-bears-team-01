@@ -1,4 +1,4 @@
 module.exports = {
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 8888,
   DATABASE: process.env.DATABASEURL
 }
