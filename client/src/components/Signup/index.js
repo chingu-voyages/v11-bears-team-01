@@ -7,13 +7,12 @@ import {
   StyledLink,
   Form,
   SubmitButton,
-  Input,
-  Error
+  Input
 } from "../../styles/form-elements";
 import useHandleInputs from "../../utils/useHandleInputs";
 import useHandleSubmit from "../../utils/useHandleSubmit";
 import cb from "./submitCallback";
-import { errorMessageContainer } from "../../styles/errorMessageContainer";
+import ErrorMessage from "../shared/ErrorMessage";
 import { AuthContext } from "../../context/AuthContext";
 
 const initialState = {
@@ -41,9 +40,7 @@ const SignUp = props => {
           onChange={handleChange}
           error={errors.name}
         ></Input>
-        <span style={errorMessageContainer}>
-          <Error>{errors.name}</Error>
-        </span>
+        <ErrorMessage>{errors.name}</ErrorMessage>
         <Input
           placeholder="Enter your email"
           type="email"
@@ -52,9 +49,7 @@ const SignUp = props => {
           onChange={handleChange}
           error={errors.email}
         ></Input>
-        <span style={errorMessageContainer}>
-          <Error>{errors.email}</Error>
-        </span>
+        <ErrorMessage>{errors.email}</ErrorMessage>
         <Input
           placeholder="Enter your password"
           type="password"
@@ -63,9 +58,7 @@ const SignUp = props => {
           onChange={handleChange}
           error={errors.password2}
         ></Input>
-        <span style={errorMessageContainer}>
-          <Error>{errors.password}</Error>
-        </span>
+        <ErrorMessage>{errors.password}</ErrorMessage>
         <Input
           placeholder="Repeat your password"
           type="password"
@@ -74,9 +67,7 @@ const SignUp = props => {
           onChange={handleChange}
           error={errors.password2}
         ></Input>
-        <span style={errorMessageContainer}>
-          <Error>{errors.password2}</Error>
-        </span>
+        <ErrorMessage>{errors.password2}</ErrorMessage>
         <SubmitButton type="submit">Sign up</SubmitButton>
       </Form>
       <StyledH4>
