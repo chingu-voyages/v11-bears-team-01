@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const keys = require("./config/keys");
 const passport = require("passport");
-const User = require("./models/User");
-
+const users = require("./routes/api/users");
 const app = express();
 
 //BodyParser setup
@@ -31,7 +30,7 @@ mongoose.connect(process.env.DATABASEURL, {
 //Passport config
 app.use(passport.initialize());
 require("./config/passport")(passport);
-app.use("/api/users", User);
+app.use("/api/users", users);
 
 //Start Server
 const PORT = keys.PORT;
