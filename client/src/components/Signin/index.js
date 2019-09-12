@@ -7,13 +7,12 @@ import {
   StyledH4,
   StyledLink,
   SubmitButton,
-  Input,
-  Error
+  Input
 } from "../../styles/form-elements";
 import useHandleInputs from "../../utils/useHandleInputs";
 import useHandleSubmit from "../../utils/useHandleSubmit";
 import cb from "./submitCallback";
-import { errorMessageContainer } from "../../styles/errorMessageContainer";
+import ErrorMessage from "../shared/ErrorMessage";
 import { AuthContext } from "../../context/AuthContext";
 
 const initialState = {
@@ -39,9 +38,7 @@ const SignIn = props => {
           onChange={handleChange}
           error={errors.email}
         ></Input>
-        <span style={errorMessageContainer}>
-          <Error>{errors.email}</Error>
-        </span>
+        <ErrorMessage>{errors.email}</ErrorMessage>
         <Input
           placeholder="Enter your password"
           type="password"
@@ -50,9 +47,7 @@ const SignIn = props => {
           onChange={handleChange}
           error={errors.password}
         ></Input>
-        <span style={errorMessageContainer}>
-          <Error>{errors.password}</Error>
-        </span>
+        <ErrorMessage>{errors.password}</ErrorMessage>
         <SubmitButton type="submit">Log in</SubmitButton>
       </Form>
       <StyledH4>

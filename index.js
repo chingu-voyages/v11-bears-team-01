@@ -7,6 +7,8 @@ const keys = require("./config/keys");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const app = express();
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 //BodyParser setup
 app.use(
@@ -33,5 +35,6 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 
 //Start Server
+
 const PORT = keys.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
