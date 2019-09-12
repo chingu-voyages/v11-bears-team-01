@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
-// Creates a LineString Schema for the bike rides
-
+// Creates a LineString Schema.
 const RideSchema = new Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, maxlength: 32, trim: true },
+  description: { type: String, required: true, maxlength: 2000 },
   geo: {
     type: { type: String, default: "LineString" },
     coordinates: Array

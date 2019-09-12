@@ -13,7 +13,7 @@ const rideRoutes = require("./routes/ride");
 
 // Connecting to the database
 mongoose
-  .connect(keys.DATABASE, {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true
   })

@@ -1,6 +1,6 @@
 const Ride = require("../models/ride");
 
-exports.createRide = (req, res) => {
+exports.create = (req, res) => {
   console.log("req.body", req.body);
   const ride = new Ride(req.body);
   ride.save((err, ride) => {
