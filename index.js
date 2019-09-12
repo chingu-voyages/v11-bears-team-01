@@ -1,36 +1,40 @@
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const keys = require("./config/keys");
+const passport = require("passport");
+const users = require("./routes/api/users");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+//BodyParser setup
+app.use(
+    bodyParser.urlencoded({
+        extended: false
+    })
+);
+app.use(bodyParser.json());
 app.use(morgan("dev"));
 
-// Import routes
-const rideRoutes = require("./routes/rides"),
-      indexRoutes = require("./routes/index");
+//Database Config
+mongoose.connect(process.env.DATABASEURL, {
+	useNewUrlParser: true,
+	useCreateIndex: true
+}).then(() => {
+	console.log('Connected to DB');
+}).catch(err => {
+	console.log('ERROR connecting to database: ', err.message);
+});
 
-// Connecting to the database
-mongoose
-  .connect(keys.DATABASE, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  })
-  .then(() => console.log("DB connected!..."));
+//Passport config
+app.use(passport.initialize());
+require("./config/passport")(passport);
+app.use("/api/users", users);
 
-// Middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public"));{
+//Start Server
 
-}
-// Routes
-app.use("/", indexRoutes);
-app.use("/rides", rideRoutes);
-
-// Setting up the port
 const PORT = keys.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
