@@ -1,17 +1,24 @@
-export default (inputs, dispatch) => {
-  console.log(inputs);
-  //Dummy data for testing the data flow, this should come from the backend
-  const errors = {
-    name: "No name provided",
-    email: "No email provided",
-    password: "No password",
-    password2: `Passwords don't match`
-  };
-  dispatch({
-    type: "SIGN_UP_ERRORS",
-    payload: errors
-  });
-  //Here goes the call to the api passing the inputs values of the sign up form in body of the request
-  //and then dispatch a bunch of actions to the context in response
-  //such as the errors coming from the backend validation so that the UI renders them.
+import axios from "axios";
+import {
+  loading,
+  resetInputs,
+  registrationOK,
+  signUpErrors
+} from "../../utils/actions";
+
+export default (inputs, dispatch, props, setInputs) => {
+  dispatch(loading(true));
+  axios
+    .post("/api/users/register", inputs)
+    .then(res =>
+      alert(`Registration OK. user: ${res.data.name} email: ${res.data.email}`)
+    )
+    .then(() => dispatch(registrationOK))
+    .then(() => setInputs(resetInputs))
+    .then(() => props.history.push("/login"))
+    .catch(err => dispatch(signUpErrors(err.response.data)))
+    .then(() => dispatch(loading(false)));
 };
+
+//we should put something else to notify users from succesful registration.
+//This just redirects to /login if there's no errors

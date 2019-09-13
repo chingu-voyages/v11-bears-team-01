@@ -23,8 +23,8 @@ const initialState = {
 const SignIn = props => {
   const { dispatch, store } = useContext(AuthContext);
   const { handleChange, inputs } = useHandleInputs(initialState);
-  const { handleSubmit } = useHandleSubmit(() => cb(inputs, dispatch));
-  const { signInErrors: errors } = store;
+  const { handleSubmit } = useHandleSubmit(() => cb(inputs, dispatch, props));
+  const { signInErrors: errors, loading } = store;
 
   return (
     <Landing>
