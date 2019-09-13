@@ -5,6 +5,7 @@ const keys = require("./config/keys");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 app.use(morgan("dev"));
 
@@ -22,6 +23,7 @@ mongoose
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes middleware
 app.use("/api", rideRoutes);
