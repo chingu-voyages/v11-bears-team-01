@@ -9,6 +9,7 @@ import {
   SubmitButton,
   Input
 } from "../../styles/form-elements";
+import { PulseLoader } from "react-spinners";
 import useHandleInputs from "../../utils/useHandleInputs";
 import useHandleSubmit from "../../utils/useHandleSubmit";
 import cb from "./submitCallback";
@@ -23,8 +24,8 @@ const initialState = {
 const SignIn = props => {
   const { dispatch, store } = useContext(AuthContext);
   const { handleChange, inputs } = useHandleInputs(initialState);
-  const { handleSubmit } = useHandleSubmit(() => cb(inputs, dispatch));
-  const { signInErrors: errors } = store;
+  const { handleSubmit } = useHandleSubmit(() => cb(inputs, dispatch, props));
+  const { signInErrors: errors, loading } = store;
 
   return (
     <Landing>
@@ -48,7 +49,13 @@ const SignIn = props => {
           error={errors.password}
         ></Input>
         <ErrorMessage>{errors.password}</ErrorMessage>
-        <SubmitButton type="submit">Log in</SubmitButton>
+        <SubmitButton type="submit">
+          {!loading ? (
+            "Log in"
+          ) : (
+            <PulseLoader size={8} color={"#ffffff"} loading={loading} />
+          )}
+        </SubmitButton>
       </Form>
       <StyledH4>
         Don't have an account? <StyledLink to="/sign-up">Sign up</StyledLink>

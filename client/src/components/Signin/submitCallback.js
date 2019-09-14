@@ -1,16 +1,25 @@
-export default (inputs, dispatch) => {
-  console.log(inputs);
-  
-  //Dummy data for testing data flow
-  const errors = {
-    email: "No email provided",
-    password: "No password"
-  };
-  dispatch({
-    type: "SIGN_IN_ERRORS",
-    payload: errors
-  });
-  //Here goes the call to the api passing the inputs values of the sign up form in body of the request
-  //and then dispatch a bunch of actions to the context in response
-  //such as the errors coming from the backend validation so that the UI renders them.
+import axios from "axios";
+import { loading, signInErrors, userAuthenticated } from "../../utils/actions";
+import jwt_decode from "jwt-decode";
+
+function setToken(token) {
+  window.localStorage.setItem("token", token);
+}
+function handleAuthentication(res, dispatch) {
+  const { token } = res.data;
+  const parsedToken = token.split("Bearer ")[1];
+  setToken(parsedToken);
+  const decoded = jwt_decode(token);
+  dispatch(userAuthenticated(decoded, parsedToken));
+}
+
+export default (inputs, dispatch, props) => {
+  dispatch(loading(true));
+  axios
+    .post("/api/users/login", inputs)
+    .then(res => handleAuthentication(res, dispatch))
+    .then(() => props.history.push("/dashboard"))
+    .then(() => dispatch(loading(false)))
+    .catch(err => dispatch(signInErrors(err.response.data)))
+    .then(() => dispatch(loading(false)));
 };

@@ -1,12 +1,15 @@
 import React from "react";
 import { AuthWrapper, Landing, LandingLayout } from "./styles";
 
-export default ({children}) => {
+export default ({ children }) => {
   return (
     <LandingLayout>
       <Landing>
-        <h2>This is an App.</h2>
-        <h3>A good one.</h3>
+        <h1>
+          <span role="img" aria-label="bikes">
+            🚲 🛵 🏍
+          </span>
+        </h1>
       </Landing>
       <AuthWrapper>{children}</AuthWrapper>
     </LandingLayout>
