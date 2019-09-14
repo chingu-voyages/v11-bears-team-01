@@ -9,6 +9,7 @@ import {
   SubmitButton,
   Input
 } from "../../styles/form-elements";
+import { PulseLoader } from "react-spinners";
 import useHandleInputs from "../../utils/useHandleInputs";
 import useHandleSubmit from "../../utils/useHandleSubmit";
 import cb from "./submitCallback";
@@ -70,7 +71,13 @@ const SignUp = props => {
           error={errors.password2}
         ></Input>
         <ErrorMessage>{errors.password2}</ErrorMessage>
-        <SubmitButton type="submit">Sign up</SubmitButton>
+        <SubmitButton type="submit">
+          {!loading ? (
+            "Sign up"
+          ) : (
+            <PulseLoader size={8} color={"#ffffff"} loading={loading} />
+          )}
+        </SubmitButton>
       </Form>
       <StyledH4>
         Don't have an account? <StyledLink to="/login">Sign in</StyledLink>

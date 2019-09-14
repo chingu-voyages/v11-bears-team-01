@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import SignIn from "../Signin/index";
 import SignUp from "../Signup/index";
 import Dashboard from "../Dashboard/Dashboard";
-import PrivateRoute from "../../utils/PrivateRoute";
+import PrivateRoute from "../shared/PrivateRoute";
 import "./App.css";
 
 function App() {
