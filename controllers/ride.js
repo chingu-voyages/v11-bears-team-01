@@ -1,4 +1,4 @@
-const Ride = require("../models/ride");
+const Ride = require("../models/Ride");
 
 // Get ride by id
 

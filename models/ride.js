@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 // Creates a LineString Schema.
 const RideSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
   name: { type: String, required: true, maxlength: 32, trim: true },
   description: { type: String, required: true, maxlength: 2000 },
   geo: {
