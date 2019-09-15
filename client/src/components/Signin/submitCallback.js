@@ -1,6 +1,5 @@
 import axios from "axios";
 import { loading, signInErrors, userAuthenticated } from "../../utils/actions";
-import jwt_decode from "jwt-decode";
 
 function setToken(token) {
   window.localStorage.setItem("token", token);
@@ -9,8 +8,7 @@ function handleAuthentication(res, dispatch) {
   const { token } = res.data;
   const parsedToken = token.split("Bearer ")[1];
   setToken(parsedToken);
-  const decoded = jwt_decode(token);
-  dispatch(userAuthenticated(decoded, parsedToken));
+  dispatch(userAuthenticated(parsedToken));
 }
 
 export default (inputs, dispatch, props) => {
