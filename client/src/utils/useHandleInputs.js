@@ -3,7 +3,7 @@ import { useState } from "react";
 export default initialState => {
   const [inputs, setInputs] = useState(initialState);
 
-  const handleChange = e => {
+  function handleChange(e) {
     e.persist();
     setInputs(inputs => ({
       ...inputs,

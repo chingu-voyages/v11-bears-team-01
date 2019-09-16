@@ -1,9 +1,7 @@
 import React from "react";
 import { Section, Text, UserIcon, Wrapper, Arrow } from "./styles";
-import useOpenMenu from "./useOpenMenu";
 
 export default ({ user, handleOpenMenu }) => {
-  // const { handleOpenMenu } = useOpenMenu();
   return (
     <React.Fragment>
       <Section flex={"1"} justify={"flex-end"} style={{ background: "" }}>

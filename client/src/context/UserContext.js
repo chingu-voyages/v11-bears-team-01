@@ -23,6 +23,8 @@ const reducer = (state, action) => {
         ...state,
         rides: action.payload
       };
+    default:
+      return state;
   }
 };
 export const UserProvider = props => {

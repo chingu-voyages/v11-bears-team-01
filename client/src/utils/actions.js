@@ -1,5 +1,3 @@
-import useSetUserData from "../components/Dashboard/useSetUserData";
-
 export function loading(state) {
   return { type: "LOADING", payload: state };
 }

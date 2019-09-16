@@ -1,8 +1,8 @@
 export default callback => {
-  const handleSubmit = e => {
+  function handleSubmit(e) {
     e && e.preventDefault();
     callback();
-  };
+  }
 
   return {
     handleSubmit

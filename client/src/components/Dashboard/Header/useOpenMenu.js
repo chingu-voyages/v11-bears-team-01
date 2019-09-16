@@ -3,10 +3,10 @@ import { useState } from "react";
 export default () => {
   const [openMenu, setOpenMenu] = useState(false);
 
-  const handleOpenMenu = () => {
+  function handleOpenMenu() {
     setOpenMenu(!openMenu);
     console.log(openMenu);
-  };
+  }
 
   return {
     openMenu,

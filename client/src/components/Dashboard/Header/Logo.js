@@ -13,3 +13,5 @@ export default () => (
     </Wrapper>
   </Section>
 );
+
+//Here should go the name of the app, though display: none with small screens
