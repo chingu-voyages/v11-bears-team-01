@@ -49,20 +49,45 @@ export const Wrapper = styled(Section)`
     transition: all 0.4s ease;
   }
 `;
-
+//dropdown menu
 export const Dropdown = styled.div`
   display: flex;
   position: absolute;
   top: 4em;
   right: 15px;
-  height: 5em;
+  height: auto;
   width: 250px;
   background-color: #fff;
-  border: 1px solid #fcfcff;
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
 `;
 
 export const DropdownBlock = styled.li`
+  display: flex;
+  align-items: center;
   width: 100%;
+  height: 50px;
   list-style: none;
+`;
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20px 30px;
+  margin: 0;
+  background-color: #fff;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  font-family: "Archivo", sans-serif;
+  color: rgba(19, 30, 65, 0.6);
+  font-size: 1rem;
+  font-weight: 500;
+
+  &:hover {
+    background: rgba(205, 206, 228, 0.4);
+    color: rgba(19, 30, 65, 0.8);
+  }
+  &:focus {
+    outline: none;
+  }
 `;
