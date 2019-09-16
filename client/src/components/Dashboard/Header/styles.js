@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { User } from "styled-icons/boxicons-regular/User";
 import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
+import { LogOut } from "styled-icons/boxicons-regular/LogOut";
 import { colors } from "../../../styles/vars";
 
 export const Header = styled.nav`
@@ -22,7 +23,7 @@ export const Section = styled.section`
   height: 100%;
   justify-content: ${props => props.justify};
   align-items: center;
-  margin: 0 20px;
+  margin: 0 40px;
 `;
 
 export const UserIcon = styled(User)`
@@ -38,8 +39,11 @@ export const Arrow = styled(KeyboardArrowDown)`
   margin-left: 5px;
 `;
 
-export const Wrapper = styled(Section)`
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 15px;
+  height: 100%;
   color: ${colors.fontBlack};
   cursor: ${props => (props.pointer ? "pointer" : "auto")};
   width: auto;
@@ -50,8 +54,9 @@ export const Wrapper = styled(Section)`
   }
 `;
 //dropdown menu
-export const Dropdown = styled.div`
+export const DropdownMenu = styled.div`
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 4em;
   right: 15px;
@@ -61,19 +66,17 @@ export const Dropdown = styled.div`
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
 `;
 
-export const DropdownBlock = styled.li`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  list-style: none;
+export const LogOutIcon = styled(LogOut)`
+  margin-right: 7px;
 `;
-export const Button = styled.button`
+
+export const DropdownButton = styled.button`
   display: flex;
   align-items: center;
   width: 100%;
   padding: 20px 30px;
   margin: 0;
+  /* background: red; */
   background-color: #fff;
   text-align: left;
   border: none;

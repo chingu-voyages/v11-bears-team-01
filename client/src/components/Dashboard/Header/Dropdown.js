@@ -1,14 +1,23 @@
 import React from "react";
-import { Dropdown, DropdownBlock, Button } from "./styles";
+import { withRouter } from "react-router-dom";
+import { DropdownMenu, DropdownButton, LogOutIcon } from "./styles";
 
-export default () => {
+const Menu = props => {
+  function handleLogOut() {
+    window.localStorage.removeItem("token");
+    props.history.push("/");
+  }
+
   return (
     <React.Fragment>
-      <Dropdown>
-        <DropdownBlock>
-          <Button>Log out</Button>
-        </DropdownBlock>
-      </Dropdown>
+      <DropdownMenu>
+        <DropdownButton onClick={handleLogOut}>
+          <LogOutIcon size={"20px"} />
+          Log out
+        </DropdownButton>
+      </DropdownMenu>
     </React.Fragment>
   );
 };
+
+export default withRouter(Menu);
