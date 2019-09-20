@@ -6,8 +6,9 @@ import { usePosition } from "use-position";
 const Main = styled.main`
   position: relative;
   top: 4em;
+  right: 0;
   height: 90vh;
-  width: 100vw;
+  width: 70vw;
 `;
 
 const config = {
@@ -15,7 +16,7 @@ const config = {
 };
 
 export default () => {
-  const { latitude: lat, longitude: lng, error } = usePosition(false, config);
+  const { latitude: lat, longitude: lng, error } = usePosition(false);
 
   return <Main>{lat && !error && <Map coords={[lat, lng]} />}</Main>;
 };

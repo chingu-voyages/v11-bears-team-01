@@ -4,9 +4,10 @@ import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
 import { LogOut } from "styled-icons/boxicons-regular/LogOut";
 import { colors } from "../../../styles/vars";
 
-export const Header = styled.nav`
+export const Header = styled.header`
   display: flex;
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100vw;
@@ -71,6 +72,8 @@ export const LogOutIcon = styled(LogOut)`
 `;
 
 export const DropdownButton = styled.button`
+  position: relative;
+  z-index: 1005;
   display: flex;
   align-items: center;
   width: 100%;
