@@ -1,17 +1,23 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import Header from "./Header/index";
-import useSetUserData from "./useSetUserData";
+import useFetchUserData from "./useFetchUserData";
+import Sidebar from "./Sidebar/index";
+import Main from "./Main/index";
+import Footer from "./Footer/index";
+import styled from "styled-components";
 
-const Main = styled.main``;
+const Layout = styled.div``;
 
 export default () => {
-  const { userStore } = useSetUserData();
+  const [createMode, setCreateMode] = useState(true);
+  const { userStore } = useFetchUserData();
 
   return (
-    <React.Fragment>
+    <Layout>
       <Header user={userStore.user} />
-      <Main />
-    </React.Fragment>
+      <Sidebar {...{ setCreateMode }} />
+      <Main {...{ createMode }} />
+      <Footer />
+    </Layout>
   );
 };
