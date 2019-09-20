@@ -15,7 +15,8 @@ const config = {
   enableHighAccuracy: true
 };
 
-export default () => {
+export default ({ createMode }) => {
+  //geolocation data
   const { latitude: lat, longitude: lng, error } = usePosition(false);
 
   return <Main>{lat && !error && <Map coords={[lat, lng]} />}</Main>;
