@@ -6,18 +6,27 @@ import Main from "./Main/index";
 import Footer from "./Footer/index";
 import styled from "styled-components";
 
-const Layout = styled.div``;
+const Content = styled.div`
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: 4em;
+  right: 0;
+`;
 
 export default () => {
   const [createMode, setCreateMode] = useState(true);
   const { userStore } = useFetchUserData();
 
   return (
-    <Layout>
+    <React.Fragment>
       <Header user={userStore.user} />
-      <Sidebar {...{ setCreateMode }} />
-      <Main {...{ createMode }} />
+      <Content>
+        <Sidebar {...{ setCreateMode }} />
+        <Main {...{ createMode }} />
+      </Content>
       <Footer />
-    </Layout>
+    </React.Fragment>
   );
 };
