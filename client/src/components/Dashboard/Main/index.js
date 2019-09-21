@@ -6,7 +6,7 @@ import { usePosition } from "use-position";
 const Main = styled.main`
   height: 100%;
   width: 100%;
-  flex: 0 1 75%;
+  flex: 0 1 80%;
   background: blue;
 `;
 

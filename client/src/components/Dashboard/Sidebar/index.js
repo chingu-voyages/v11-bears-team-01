@@ -1,22 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { UserContext } from "../../../context/UserContext";
-import Nav from "./Nav/index";
+import RidesList from "./RidesList/index";
+import CreateButton from "./CreateButton";
 
-const Sidebar = styled.div`
+const Sidebar = styled.aside`
   height: 100%;
-  background: pink;
-  flex: 0 1 25%;
+  flex: 0 1 20%;
+  padding: 25px 30px;
 `;
 
 export default ({ setCreateMode }) => {
-  const { userStore } = useContext(UserContext);
-
   return (
-    <React.Fragment>
-      <Sidebar>
-        <h3>Sidebar</h3>
-      </Sidebar>
-    </React.Fragment>
+    <Sidebar>
+      <CreateButton />
+      <RidesList />
+    </Sidebar>
   );
 };
