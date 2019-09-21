@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { Component, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import Landing from "../Landing/index";
+import GoogleLogin from 'react-google-login';
 import {
   Form,
   Title,
@@ -16,6 +17,7 @@ import cb from "./submitCallback";
 import ErrorMessage from "../shared/ErrorMessage";
 import { AuthContext } from "../../context/AuthContext";
 
+
 const initialState = {
   email: "",
   password: ""
@@ -26,6 +28,20 @@ const SignIn = props => {
   const { handleChange, inputs } = useHandleInputs(initialState);
   const { handleSubmit } = useHandleSubmit(() => cb(inputs, dispatch, props));
   const { signInErrors: errors, loading } = store;
+
+  const responseGoogle = async (response) => {
+      //console.log(response);      //uncomment this line, comment out the UserObject, to see our response object
+      const userObject = {      //TODO send to database
+          name: response.w3.ofa,
+          email: response.w3.U3,
+          password: 'test',      //google does not send us password, assign default
+          password2: 'test'      //google does not send us password, assign default
+      }
+      if(response.w3.ofa) {
+          await localStorage.setItem("user", JSON.stringify(userObject));
+          await window.location.reload();
+      } else {}
+  }
 
   return (
     <Landing>
@@ -57,11 +73,17 @@ const SignIn = props => {
           )}
         </SubmitButton>
       </Form>
+      <GoogleLogin
+          clientId="448506538709-mieu0c2k5o9ao9s736l2c9v4rgluli7t.apps.googleusercontent.com"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+      />
       <StyledH4>
         Don't have an account? <StyledLink to="/sign-up">Sign up</StyledLink>
       </StyledH4>
     </Landing>
-  );
+  )
 };
 
 export default withRouter(SignIn);

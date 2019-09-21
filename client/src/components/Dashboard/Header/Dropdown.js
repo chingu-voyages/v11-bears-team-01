@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { DropdownMenu, DropdownButton, LogOutIcon } from "./styles";
+//import { GoogleLogout } from 'react-google-login';        //used for googleLogout once we can login with google successfully
 
 const Menu = props => {
   function handleLogOut() {
