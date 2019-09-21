@@ -4,11 +4,10 @@ import Map from "../Map/index";
 import { usePosition } from "use-position";
 
 const Main = styled.main`
-  position: relative;
-  top: 4em;
-  right: 0;
-  height: 90vh;
-  width: 70vw;
+  height: 100%;
+  width: 100%;
+  flex: 0 1 75%;
+  background: blue;
 `;
 
 const config = {
@@ -16,7 +15,7 @@ const config = {
 };
 
 export default ({ createMode }) => {
-  //geolocation data
+  //geolocation data (use only for create mode)
   const { latitude: lat, longitude: lng, error } = usePosition(false);
 
   return <Main>{lat && !error && <Map coords={[lat, lng]} />}</Main>;
