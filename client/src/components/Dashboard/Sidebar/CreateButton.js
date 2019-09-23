@@ -6,9 +6,9 @@ const CreateButton = styled(MainActionButton)`
   min-width: 220px;
 `;
 
-export default () => {
+export default ({ setCreateModeOn }) => {
   function handleClick() {
-    console.log("new ride click");
+    setCreateModeOn(true);
   }
   return <CreateButton onClick={handleClick}>Create new ride</CreateButton>;
 };

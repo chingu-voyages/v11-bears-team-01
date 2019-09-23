@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../styles/vars";
 
@@ -26,11 +26,16 @@ const Li = styled.li`
   }
 `;
 
-export default () => {
+export default ({ setCurrentCoords, setCreateModeOn }) => {
+  function handleClick() {
+    //setting waypoints
+    setCurrentCoords([15, 0]);
+    setCreateModeOn(false);
+  }
   return (
     <Nav>
       <Ul>
-        <Li>Road X</Li>
+        <Li onClick={handleClick}>Road X</Li>
         <Li>Road Y</Li>
         <Li>Road Z</Li>
         <Li>Road Z</Li>

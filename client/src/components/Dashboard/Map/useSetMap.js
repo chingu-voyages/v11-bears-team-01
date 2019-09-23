@@ -15,6 +15,7 @@ export default (coords = []) => {
         })
       ]
     });
+    console.log("map setting triggering");
   }, []);
 
   return { mapRef };

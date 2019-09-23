@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Map from "../Map/index";
-import { usePosition } from "use-position";
 
 const Main = styled.main`
   height: 100%;
@@ -10,13 +9,7 @@ const Main = styled.main`
   background: blue;
 `;
 
-const config = {
-  enableHighAccuracy: true
-};
-
-export default ({ createMode }) => {
-  //geolocation data (use only for create mode)
-  const { latitude: lat, longitude: lng, error } = usePosition(false);
-
-  return <Main>{lat && !error && <Map coords={[lat, lng]} />}</Main>;
+export default ({ currentCoords }) => {
+  const [lat, lng] = currentCoords;
+  return <Main>{lat && <Map coords={[lat, lng]} />}</Main>;
 };

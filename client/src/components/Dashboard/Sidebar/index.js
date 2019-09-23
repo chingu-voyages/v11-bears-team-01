@@ -9,11 +9,11 @@ const Sidebar = styled.aside`
   padding: 25px 30px;
 `;
 
-export default ({ setCreateMode }) => {
+export default props => {
   return (
     <Sidebar>
-      <CreateButton />
-      <RidesList />
+      <CreateButton {...props} />
+      <RidesList {...props} />
     </Sidebar>
   );
 };

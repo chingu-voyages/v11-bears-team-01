@@ -18,7 +18,7 @@ const reducer = (state, action) => {
           name: action.payload.name
         }
       };
-    case "RIDES_DATA":
+    case "SET_RIDES_DATA":
       return {
         ...state,
         rides: action.payload
