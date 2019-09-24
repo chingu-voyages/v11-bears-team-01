@@ -3,8 +3,10 @@ import L from "leaflet";
 
 export default (coords = []) => {
   const mapRef = useRef();
+  const routeControl = useRef();
 
   useEffect(() => {
+    //map mounting
     mapRef.current = L.map(mapRef.current, {
       center: coords,
       zoom: 16,
@@ -15,8 +17,13 @@ export default (coords = []) => {
         })
       ]
     });
-    console.log("map setting triggering");
+    //route mounting
+    routeControl.current = L.Routing.control({
+      waypoints: [L.latLng(coords), L.latLng(coords)],
+      routeWhileDragging: true,
+      routeDragInterval: 0
+    }).addTo(mapRef.current);
   }, []);
 
-  return { mapRef };
+  return { mapRef, routeControl };
 };
