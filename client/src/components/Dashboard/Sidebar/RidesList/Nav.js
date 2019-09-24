@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { setCoords, setCreateMode } from "../../../../utils/actions";
 import { colors } from "../../../../styles/vars";
 
 const Nav = styled.nav`
@@ -26,11 +27,11 @@ const Li = styled.li`
   }
 `;
 
-export default ({ setCurrentCoords, setCreateModeOn }) => {
+export default ({ dispatch }) => {
   function handleClick() {
     //setting waypoints
-    setCurrentCoords([15, 0]);
-    setCreateModeOn(false);
+    dispatch(setCoords([35, 15]));
+    // dispatch(setCreateMode(false));
   }
   return (
     <Nav>
