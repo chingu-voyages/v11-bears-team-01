@@ -20,3 +20,10 @@ export const registrationOK = { type: "REGISTRATION_OK" };
 export function setUserData(data) {
   return { type: "USER_DATA", payload: data };
 }
+
+export function setCoords(data) {
+  return { type: "SET_COORDS", payload: data };
+}
+export function setCreateMode(data) {
+  return { type: "RIDE_CREATION", payload: data };
+}
