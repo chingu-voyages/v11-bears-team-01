@@ -27,11 +27,12 @@ const Li = styled.li`
   }
 `;
 
-export default ({ dispatch }) => {
+export default ({ dispatch, store }) => {
+  const { currentRoute } = store;
   function handleClick() {
     //setting waypoints
-    dispatch(setCoords([35, 15]));
-    // dispatch(setCreateMode(false));
+    dispatch(setCoords([0, 15]));
+    dispatch(setCreateMode(false));
   }
   return (
     <Nav>

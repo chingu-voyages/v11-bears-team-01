@@ -2,22 +2,56 @@ import React, { createContext, useReducer, useMemo } from "react";
 
 export const RidesContext = createContext();
 const initialState = {
-  createModeOn: true,
-  currentCoords: []
+  createMode: true,
+  currentCoords: [],
+  currentRoute: {
+    title: "",
+    waypoints: [],
+    totalDistance: null,
+    totalTime: null
+  },
+  rides: []
 };
 
 const reducer = (state, action) => {
+  const { currentRoute, rides } = state;
+
   switch (action.type) {
-    case "RIDE_CREATION":
+    case "SET_RIDES_DATA":
       return {
         ...state,
-        createModeOn: action.payload
+        rides: action.payload
+      };
+    case "CREATE_MODE":
+      return {
+        ...state,
+        createMode: action.payload
       };
     case "SET_COORDS":
       return {
         ...state,
         currentCoords: action.payload
       };
+    case "SET_ROUTE_TITLE":
+      return {
+        ...state,
+        currentRoute: {
+          ...currentRoute,
+          title: action.payload
+        }
+      };
+    case "SET_ROUTE_EVENT":
+      return {
+        ...state,
+        currentRoute: {
+          ...currentRoute,
+          waypoints: action.payload.waypoints,
+          totalDistance: action.payload.totalDistance,
+          totalTime: action.payload.totalTime
+        }
+      };
+    default:
+      return state;
   }
 };
 

@@ -11,11 +11,11 @@ const Sidebar = styled.aside`
 `;
 
 export default () => {
-  const { dispatch } = useContext(RidesContext);
+  const { dispatch, store } = useContext(RidesContext);
   return (
     <Sidebar>
       <CreateButton {...{ dispatch }} />
-      <RidesList {...{ dispatch }} />
+      <RidesList {...{ dispatch, store }} />
     </Sidebar>
   );
 };

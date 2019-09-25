@@ -8,6 +8,7 @@ import MapController from "./MapController/index";
 
 const Main = styled.main`
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   flex: 0 1 80%;
@@ -19,18 +20,16 @@ const config = {
 export default () => {
   const { store, dispatch } = useContext(RidesContext);
   const { currentCoords } = store;
-  const [route, setRoute] = useState({});
   const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
   useEffect(() => {
     !error && lat && dispatch(setCoords([lat, lng]));
   }, [lat]);
 
-  console.log(route);
   return (
     <Main>
-      {currentCoords.length > 0 && <Map {...{ currentCoords, setRoute }} />}
-      <MapController />
+      {currentCoords.length > 0 && <Map {...{ currentCoords, dispatch }} />}
+      <MapController {...{ dispatch, store }} />
     </Main>
   );
 };

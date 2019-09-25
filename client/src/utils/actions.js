@@ -24,6 +24,11 @@ export function setUserData(data) {
 export function setCoords(data) {
   return { type: "SET_COORDS", payload: data };
 }
+
 export function setCreateMode(data) {
-  return { type: "RIDE_CREATION", payload: data };
+  return { type: "CREATE_MODE", payload: data };
+}
+
+export function setRouteEvent(data) {
+  return { type: "SET_ROUTE_EVENT", payload: data };
 }
