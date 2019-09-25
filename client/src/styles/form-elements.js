@@ -13,6 +13,7 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 export const Title = styled.h1`
@@ -22,35 +23,10 @@ export const Title = styled.h1`
   color: #131e41;
 `;
 
-export const StyledH4 = styled.h4`
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 500;
-  color: #131e41;
-  margin-top: 42px;
-`;
-
 export const StyledLink = styled(Link)`
   &:active {
     color: #1c01ff;
   }
-`;
-
-export const SubmitButton = styled.button`
-  border: 1px solid #1c01ff;
-  background: #1c01ff;
-  color: white;
-  font-size: 14px;
-  height: 42px;
-  font-family: "Archivo", sans-serif;
-  cursor: pointer;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  border-radius: 2px;
-  padding: 0 15px;
-  width: 100%;
-  margin-top: 5px;
-  outline: none;
 `;
 
 export const Input = styled.input`

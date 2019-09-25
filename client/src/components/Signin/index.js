@@ -1,14 +1,9 @@
 import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import Landing from "../Landing/index";
-import {
-  Form,
-  Title,
-  StyledH4,
-  StyledLink,
-  SubmitButton,
-  Input
-} from "../../styles/form-elements";
+import { Form, Title, StyledLink, Input } from "../../styles/form-elements";
+import MainActionButton from "../shared/MainActionButton";
+import StyledH4 from "../shared/StyledH4";
 import { PulseLoader } from "react-spinners";
 import useHandleInputs from "../../utils/useHandleInputs";
 import useHandleSubmit from "../../utils/useHandleSubmit";
@@ -49,13 +44,13 @@ const SignIn = props => {
           error={errors.password}
         ></Input>
         <ErrorMessage>{errors.password}</ErrorMessage>
-        <SubmitButton type="submit">
+        <MainActionButton type="submit">
           {!loading ? (
             "Log in"
           ) : (
             <PulseLoader size={8} color={"#ffffff"} loading={loading} />
           )}
-        </SubmitButton>
+        </MainActionButton>
       </Form>
       <StyledH4>
         Don't have an account? <StyledLink to="/sign-up">Sign up</StyledLink>

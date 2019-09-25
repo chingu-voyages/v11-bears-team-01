@@ -4,19 +4,6 @@ import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
 import { LogOut } from "styled-icons/boxicons-regular/LogOut";
 import { colors } from "../../../styles/vars";
 
-export const Header = styled.header`
-  display: flex;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 4em;
-  background-color: #fff;
-  box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.1);
-  font-family: "Archivo", sans-serif;
-`;
-
 //container for each section of the header
 export const Section = styled.section`
   display: flex;

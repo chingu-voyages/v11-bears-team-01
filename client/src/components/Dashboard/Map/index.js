@@ -6,7 +6,7 @@ import useHandleRoute from "./useHandleRoute";
 
 const Map = styled.div`
   width: 100%;
-  height: 50%;
+  height: 60%;
 `;
 
 export default ({ coords }) => {
