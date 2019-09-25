@@ -19,7 +19,7 @@ export default (coords = []) => {
     });
     //route mounting
     routeControl.current = L.Routing.control({
-      waypoints: [L.latLng(coords), L.latLng(coords)],
+      waypoints: coords,
       routeWhileDragging: true,
       routeDragInterval: 0
     }).addTo(mapRef.current);
