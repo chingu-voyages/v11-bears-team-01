@@ -1,7 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { RidesContext } from "../../../context/RidesContext";
 import { usePosition } from "use-position";
+import useSetCurrentRoute from "./useSetCurrentRoute";
 import { setCoords } from "../../../utils/actions";
 import Map from "./Map/index";
 import MapController from "./MapController/index";
@@ -20,6 +21,7 @@ const config = {
 export default () => {
   const { store, dispatch } = useContext(RidesContext);
   const { currentCoords } = store;
+  const { currentRoute, routeDispatch } = useSetCurrentRoute();
   const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
   useEffect(() => {
@@ -28,8 +30,8 @@ export default () => {
 
   return (
     <Main>
-      {currentCoords.length > 0 && <Map {...{ currentCoords, dispatch }} />}
-      <MapController {...{ dispatch, store }} />
+      {currentCoords.length > 0 && <Map {...{ store, routeDispatch }} />}
+      <MapController {...{ dispatch, currentRoute, store }} />
     </Main>
   );
 };

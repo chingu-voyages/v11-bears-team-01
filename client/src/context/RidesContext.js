@@ -4,23 +4,28 @@ export const RidesContext = createContext();
 const initialState = {
   createMode: true,
   currentCoords: [],
-  currentRoute: {
-    title: "",
-    waypoints: [],
-    totalDistance: null,
-    totalTime: null
-  },
-  rides: []
+  rides: [
+    {
+      _id: "v9382h9",
+      title: "Route 1",
+      waypoints: [[35, 0], [12, 23]]
+    },
+    {
+      _id: "ow8uh598",
+      title: "Route 2",
+      waypoints: [[23, 12], [35, 22]]
+    }
+  ]
 };
 
 const reducer = (state, action) => {
-  const { currentRoute, rides } = state;
+  const { rides } = state;
 
   switch (action.type) {
     case "SET_RIDES_DATA":
       return {
         ...state,
-        rides: action.payload
+        rides: [...rides, ...action.payload]
       };
     case "CREATE_MODE":
       return {
@@ -31,24 +36,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentCoords: action.payload
-      };
-    case "SET_ROUTE_TITLE":
-      return {
-        ...state,
-        currentRoute: {
-          ...currentRoute,
-          title: action.payload
-        }
-      };
-    case "SET_ROUTE_EVENT":
-      return {
-        ...state,
-        currentRoute: {
-          ...currentRoute,
-          waypoints: action.payload.waypoints,
-          totalDistance: action.payload.totalDistance,
-          totalTime: action.payload.totalTime
-        }
       };
     default:
       return state;

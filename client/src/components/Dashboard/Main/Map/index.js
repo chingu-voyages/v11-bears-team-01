@@ -8,9 +8,10 @@ const Map = styled.div`
   height: 60%;
 `;
 
-export default ({ currentCoords, dispatch }) => {
+export default ({ store, routeDispatch }) => {
+  const { currentCoords } = store;
   const { mapRef, routeControl } = useSetMap(currentCoords);
-  useHandleRoute(routeControl, currentCoords, dispatch);
+  useHandleRoute(routeControl, store, routeDispatch);
 
   return <Map ref={mapRef} />;
 };
