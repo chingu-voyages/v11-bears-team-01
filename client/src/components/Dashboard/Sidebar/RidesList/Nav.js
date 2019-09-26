@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
+import { setCoords, setCreateMode } from "../../../../utils/actions";
 import { colors } from "../../../../styles/vars";
 
 const Nav = styled.nav`
@@ -14,7 +15,6 @@ const Ul = styled.ul`
   padding: 0;
   margin: 0;
   color: ${colors.fontBlack};
-  /* background: red; */
 `;
 const Li = styled.li`
   padding: 15px 10px;
@@ -26,17 +26,28 @@ const Li = styled.li`
   }
 `;
 
-export default () => {
+export default ({ dispatch, store }) => {
+  const { rides } = store;
+
+  function handleClick(e) {
+    const id = e.target.dataset.id;
+    const ride = rides.filter(ride => id === ride._id);
+    //setting currentCoords on map
+    dispatch(setCoords(ride[0].waypoints));
+    dispatch(setCreateMode(false));
+  }
+
   return (
     <Nav>
       <Ul>
-        <Li>Road X</Li>
-        <Li>Road Y</Li>
-        <Li>Road Z</Li>
-        <Li>Road Z</Li>
+        {rides.map((ride, i) => (
+          <Li key={i} data-id={ride._id} onClick={e => handleClick(e)}>
+            {ride.title}
+          </Li>
+        ))}
       </Ul>
     </Nav>
   );
 };
 
-//fetch all rides from context
+//Gotta check if ObjectID mongoose data type is actually a string.

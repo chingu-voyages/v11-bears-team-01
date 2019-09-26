@@ -15,8 +15,6 @@ export default () => {
     if (token) {
       const { id, name } = jwt_decode(token);
       dispatch(setUserData({ id, name }));
-
-      //rides data can be fetched from here too
     }
   }, [token]);
   return { userStore };

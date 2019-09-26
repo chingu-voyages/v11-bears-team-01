@@ -17,11 +17,11 @@ const Title = styled(StyledH4)`
   padding: 10px;
 `;
 
-export default () => {
+export default props => {
   return (
     <Container>
       <Title>All rides</Title>
-      <Nav />
+      <Nav {...props} />
     </Container>
   );
 };

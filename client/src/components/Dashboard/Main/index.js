@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import Map from "../Map/index";
+import { RidesContext } from "../../../context/RidesContext";
 import { usePosition } from "use-position";
+import useSetCurrentRoute from "./useSetCurrentRoute";
+import { setCoords } from "../../../utils/actions";
+import Map from "./Map/index";
+import MapController from "./MapController/index";
 
 const Main = styled.main`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   flex: 0 1 80%;
-  background: blue;
 `;
-
 const config = {
   enableHighAccuracy: true
 };
 
-export default ({ createMode }) => {
-  //geolocation data (use only for create mode)
-  const { latitude: lat, longitude: lng, error } = usePosition(false);
+export default () => {
+  const { store, dispatch } = useContext(RidesContext);
+  const { currentCoords } = store;
+  const { currentRoute, routeDispatch } = useSetCurrentRoute();
+  const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
-  return <Main>{lat && !error && <Map coords={[lat, lng]} />}</Main>;
+  useEffect(() => {
+    !error && lat && dispatch(setCoords([lat, lng]));
+  }, [lat]);
+
+  return (
+    <Main>
+      {currentCoords.length > 0 && <Map {...{ store, routeDispatch }} />}
+      <MapController {...{ dispatch, currentRoute, store }} />
+    </Main>
+  );
 };

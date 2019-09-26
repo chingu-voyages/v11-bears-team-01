@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { RidesContext } from "../../../context/RidesContext";
 import RidesList from "./RidesList/index";
 import CreateButton from "./CreateButton";
 
@@ -9,11 +10,12 @@ const Sidebar = styled.aside`
   padding: 25px 30px;
 `;
 
-export default ({ setCreateMode }) => {
+export default () => {
+  const { dispatch, store } = useContext(RidesContext);
   return (
     <Sidebar>
-      <CreateButton />
-      <RidesList />
+      <CreateButton {...{ dispatch }} />
+      <RidesList {...{ dispatch, store }} />
     </Sidebar>
   );
 };

@@ -5,7 +5,6 @@ export default () => {
 
   function handleOpenMenu() {
     setOpenMenu(!openMenu);
-    console.log(openMenu);
   }
 
   return {

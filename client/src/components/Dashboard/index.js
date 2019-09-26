@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import Header from "./Header/index";
+import React from "react";
+import { RidesProvider } from "../../context/RidesContext";
+import styled from "styled-components";
+//custom hooks
 import useFetchUserData from "./useFetchUserData";
+//components
+import Header from "./Header/index";
 import Sidebar from "./Sidebar/index";
 import Main from "./Main/index";
 import Footer from "./Footer/index";
-import styled from "styled-components";
 
 const Content = styled.div`
   display: flex;
@@ -16,16 +19,17 @@ const Content = styled.div`
 `;
 
 export default () => {
-  const [createMode, setCreateMode] = useState(true);
   const { userStore } = useFetchUserData();
 
   return (
     <React.Fragment>
       <Header user={userStore.user} />
-      <Content>
-        <Sidebar {...{ setCreateMode }} />
-        <Main {...{ createMode }} />
-      </Content>
+      <RidesProvider>
+        <Content>
+          <Sidebar />
+          <Main />
+        </Content>
+      </RidesProvider>
       <Footer />
     </React.Fragment>
   );
