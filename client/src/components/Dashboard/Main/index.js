@@ -14,6 +14,10 @@ const Main = styled.main`
   width: 100%;
   flex: 0 1 80%;
 `;
+const MapContainer = styled.div`
+  width: 100%;
+  height: 60%;
+`;
 const config = {
   enableHighAccuracy: true
 };
@@ -30,7 +34,9 @@ export default () => {
 
   return (
     <Main>
-      {currentCoords.length > 0 && <Map {...{ store, routeDispatch }} />}
+      <MapContainer>
+        {currentCoords.length > 0 && <Map {...{ store, routeDispatch }} />}
+      </MapContainer>
       <MapController {...{ dispatch, currentRoute, store }} />
     </Main>
   );
