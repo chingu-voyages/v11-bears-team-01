@@ -9,11 +9,12 @@ const {
   remove,
   update
 } = require("../controllers/ride");
+const { requiredSignin, isAuth } = require("../controllers/auth");
 
 router.get("/ride/:rideId", read);
-router.post("/ride/create", create);
-router.delete("/ride/:rideId/:userId", remove);
-router.put("/ride/:rideId/:userId", update);
+router.post("/ride/create", requiredSignin, isAuth, create);
+router.delete("/ride/:rideId/:userId", requiredSignin, isAuth, remove);
+router.put("/ride/:rideId/:userId", requiredSignin, isAuth, update);
 router.get("/rides", list);
 
 router.param("rideId", rideById);
