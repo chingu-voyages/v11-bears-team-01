@@ -4,6 +4,7 @@ export const RidesContext = createContext();
 const initialState = {
   createMode: true,
   currentCoords: [],
+  currentId: "",
   rides: [
     {
       _id: "v9382h9",
@@ -25,8 +26,16 @@ const reducer = (state, action) => {
     case "SET_RIDES_DATA":
       return {
         ...state,
-        rides: [...rides, ...action.payload]
+        rides: [...rides, action.payload]
       };
+    case "UPDATE_RIDE": {
+      const index = rides.findIndex(ride => ride._id === action.payload._id);
+      const ride = rides[index];
+      return {
+        ...state,
+        rides: [...rides.slice(0, index), { ...ride, ...action.payload }]
+      };
+    }
     case "CREATE_MODE":
       return {
         ...state,
@@ -36,6 +45,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         currentCoords: action.payload
+      };
+    case "SET_ID":
+      return {
+        ...state,
+        createMode: false,
+        currentId: action.payload
       };
     default:
       return state;

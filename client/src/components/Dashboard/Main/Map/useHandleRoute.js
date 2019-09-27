@@ -18,7 +18,7 @@ function filterRouteEventObj(wps, routes) {
 }
 
 export default (routeControl = {}, store, dispatch) => {
-  const { currentCoords, createMode } = store;
+  const { currentCoords, createMode, currentId } = store;
   const wps = createMode ? [currentCoords, currentCoords] : currentCoords;
 
   useEffect(() => {

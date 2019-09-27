@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { setCoords, setCreateMode } from "../../../../utils/actions";
+import { setCoords, setId } from "../../../../utils/actions";
 import { colors } from "../../../../styles/vars";
 
 const Nav = styled.nav`
@@ -31,10 +31,10 @@ export default ({ dispatch, store }) => {
 
   function handleClick(e) {
     const id = e.target.dataset.id;
-    const ride = rides.filter(ride => id === ride._id);
+    const ride = rides.find(ride => id === ride._id);
     //setting currentCoords on map
-    dispatch(setCoords(ride[0].waypoints));
-    dispatch(setCreateMode(false));
+    dispatch(setCoords(ride.waypoints));
+    dispatch(setId(id));
   }
 
   return (
@@ -51,3 +51,4 @@ export default ({ dispatch, store }) => {
 };
 
 //Gotta check if ObjectID mongoose data type is actually a string.
+//maybe check if li elements can hold onClick listeners.

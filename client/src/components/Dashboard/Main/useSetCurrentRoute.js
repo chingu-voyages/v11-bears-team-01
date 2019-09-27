@@ -1,10 +1,21 @@
 import { useReducer } from "react";
 
+function stringGen(yourNumber) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < yourNumber; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 const initialState = {
+  _id: "",
   title: "Untitled",
   waypoints: [],
-  totalDistance: null,
-  totalTime: null
+  totalDistance: 0,
+  totalTime: 0
 };
 
 const reducer = (state, action) => {
@@ -17,6 +28,7 @@ const reducer = (state, action) => {
     case "SET_ROUTE_EVENT":
       return {
         ...state,
+        _id: stringGen(7),
         waypoints: action.payload.waypoints,
         totalDistance: action.payload.totalDistance,
         totalTime: action.payload.totalTime

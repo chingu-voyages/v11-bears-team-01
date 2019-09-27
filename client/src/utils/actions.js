@@ -13,6 +13,7 @@ export function signUpErrors(data) {
 export function userAuthenticated(token) {
   return { type: "USER_AUTHENTICATED", payload: token };
 }
+
 export const resetInputs = { name: "", email: "", password: "", password2: "" };
 
 export const registrationOK = { type: "REGISTRATION_OK" };
@@ -31,4 +32,16 @@ export function setCreateMode(data) {
 
 export function setRouteEvent(data) {
   return { type: "SET_ROUTE_EVENT", payload: data };
+}
+
+export function setRidesData(data) {
+  return { type: "SET_RIDES_DATA", payload: data };
+}
+
+export function updateRide(data) {
+  return { type: "UPDATE_RIDE", payload: data };
+}
+
+export function setId(data) {
+  return { type: "SET_ID", payload: data };
 }
