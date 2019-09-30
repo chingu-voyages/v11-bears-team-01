@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { setCoords, setId } from "../../../../utils/actions";
+import { setRecordedRoute } from "../../../../utils/actions";
 import { colors } from "../../../../styles/vars";
 
 const Nav = styled.nav`
@@ -26,15 +26,13 @@ const Li = styled.li`
   }
 `;
 
-export default ({ dispatch, store }) => {
-  const { rides } = store;
-
+export default ({ routeDispatch, rides, setCoords }) => {
   function handleClick(e) {
     const id = e.target.dataset.id;
     const ride = rides.find(ride => id === ride._id);
-    //setting currentCoords on map
-    dispatch(setCoords(ride.waypoints));
-    dispatch(setId(id));
+    //setting currentRoute to display on map
+    setCoords(ride.waypoints);
+    routeDispatch(setRecordedRoute(ride));
   }
 
   return (
@@ -50,5 +48,4 @@ export default ({ dispatch, store }) => {
   );
 };
 
-//Gotta check if ObjectID mongoose data type is actually a string.
 //maybe check if li elements can hold onClick listeners.

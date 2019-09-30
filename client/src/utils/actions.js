@@ -17,23 +17,11 @@ export function userAuthenticated(token) {
 export const resetInputs = { name: "", email: "", password: "", password2: "" };
 
 export const registrationOK = { type: "REGISTRATION_OK" };
-
+//user context
 export function setUserData(data) {
   return { type: "USER_DATA", payload: data };
 }
-
-export function setCoords(data) {
-  return { type: "SET_COORDS", payload: data };
-}
-
-export function setCreateMode(data) {
-  return { type: "CREATE_MODE", payload: data };
-}
-
-export function setRouteEvent(data) {
-  return { type: "SET_ROUTE_EVENT", payload: data };
-}
-
+//rides context
 export function setRidesData(data) {
   return { type: "SET_RIDES_DATA", payload: data };
 }
@@ -42,6 +30,15 @@ export function updateRide(data) {
   return { type: "UPDATE_RIDE", payload: data };
 }
 
-export function setId(data) {
-  return { type: "SET_ID", payload: data };
+//useSetCurrentRoute hook
+export function createNewRoute(coords) {
+  return { type: "CREATE_NEW_ROUTE", payload: coords };
+}
+
+export function setRecordedRoute(data) {
+  return { type: "SET_RECORDED_ROUTE", payload: data };
+}
+
+export function updateNewRoute(data) {
+  return { type: "UPDATE_NEW_ROUTE", payload: data };
 }

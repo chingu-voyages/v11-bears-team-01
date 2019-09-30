@@ -3,6 +3,7 @@ import { RidesProvider } from "../../context/RidesContext";
 import styled from "styled-components";
 //custom hooks
 import useFetchUserData from "./useFetchUserData";
+import useSetCurrentRoute from "./useSetCurrentRoute";
 //components
 import Header from "./Header/index";
 import Sidebar from "./Sidebar/index";
@@ -20,14 +21,15 @@ const Content = styled.div`
 
 export default () => {
   const { userStore } = useFetchUserData();
+  const { routeStore, routeDispatch, coords, setCoords } = useSetCurrentRoute();
 
   return (
     <React.Fragment>
       <Header user={userStore.user} />
       <RidesProvider>
         <Content>
-          <Sidebar />
-          <Main />
+          <Sidebar {...{ routeDispatch, setCoords }} />
+          <Main {...{ routeStore, routeDispatch, setCoords, coords }} />
         </Content>
       </RidesProvider>
       <Footer />

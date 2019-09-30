@@ -2,8 +2,6 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { RidesContext } from "../../../context/RidesContext";
 import { usePosition } from "use-position";
-import useSetCurrentRoute from "./useSetCurrentRoute";
-import { setCoords } from "../../../utils/actions";
 import Map from "./Map/index";
 import MapController from "./MapController/index";
 
@@ -22,22 +20,24 @@ const config = {
   enableHighAccuracy: true
 };
 
-export default () => {
-  const { store, dispatch } = useContext(RidesContext);
-  const { currentCoords } = store;
-  const { currentRoute, routeDispatch } = useSetCurrentRoute();
+export default ({ routeStore, routeDispatch, setCoords, coords }) => {
+  const { rides, dispatch } = useContext(RidesContext);
+  //hook that calculates user's current position
   const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
   useEffect(() => {
-    !error && lat && dispatch(setCoords([lat, lng]));
+    //setting the coords to user's current position
+    !error && lat && setCoords([lat, lng]);
   }, [lat]);
 
   return (
     <Main>
       <MapContainer>
-        {currentCoords.length > 0 && <Map {...{ store, routeDispatch }} />}
+        {coords.length > 0 && (
+          <Map {...{ routeStore, routeDispatch, coords }} />
+        )}
       </MapContainer>
-      <MapController {...{ dispatch, currentRoute, store }} />
+      <MapController {...{ dispatch, routeStore, rides, routeDispatch }} />
     </Main>
   );
 };
