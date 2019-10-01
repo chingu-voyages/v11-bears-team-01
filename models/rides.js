@@ -9,6 +9,13 @@ const RideSchema = new Schema({
     type: { type: String, default: "LineString" },
     coordinates: Array
   },
+  author: {
+      id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "email"
+      },
+      email: String
+  },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
 });
