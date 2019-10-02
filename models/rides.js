@@ -12,9 +12,9 @@ const RideSchema = new Schema({
   author: {
       id: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "email"
+          ref: "users"
       },
-      email: String
+      name: String
   },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
