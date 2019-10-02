@@ -20,8 +20,9 @@ export default (coords = []) => {
     //route mounting
     routeControl.current = L.Routing.control({
       waypoints: coords,
-      routeWhileDragging: true,
-      routeDragInterval: 0
+      routeWhileDragging: false,
+      routeDragInterval: 0,
+      router: L.Routing.mapbox(process.env.REACT_APP_MAPBOX_TOKEN)
     }).addTo(mapRef.current);
   }, []);
 
