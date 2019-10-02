@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "leaflet-routing-machine";
-import { updateNewRoute, setRecordedRoute } from "../../../../utils/actions";
+import { updateRoute } from "../../../../utils/actions";
 
 function stringGen(yourNumber) {
   var text = "";
@@ -39,8 +39,7 @@ export default (routeControl, routeStore, routeDispatch, coords) => {
     function setRouteData(e) {
       const { waypoints, routes } = e;
       const routeData = filterRouteEventObj(waypoints, routes, createMode);
-      createMode && routeDispatch(updateNewRoute(routeData));
-      !createMode && routeDispatch(setRecordedRoute(routeData));
+      routeDispatch(updateRoute(routeData));
     }
 
     routeControl.current.addEventListener("routesfound", setRouteData);

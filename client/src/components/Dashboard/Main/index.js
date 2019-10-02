@@ -21,7 +21,7 @@ const config = {
 };
 
 export default ({ routeStore, routeDispatch, setCoords, coords }) => {
-  const { rides, dispatch } = useContext(RidesContext);
+  const { dispatch } = useContext(RidesContext);
   //hook that calculates user's current position
   const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
@@ -37,7 +37,7 @@ export default ({ routeStore, routeDispatch, setCoords, coords }) => {
           <Map {...{ routeStore, routeDispatch, coords }} />
         )}
       </MapContainer>
-      <MapController {...{ dispatch, routeStore, rides, routeDispatch }} />
+      <MapController {...{ dispatch, routeStore, routeDispatch }} />
     </Main>
   );
 };

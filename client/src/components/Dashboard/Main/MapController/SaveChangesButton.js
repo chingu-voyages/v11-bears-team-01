@@ -1,19 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import MainActionButton from "../../../shared/MainActionButton";
-import { setRidesData, updateRide } from "../../../../utils/actions";
+import { setRidesData, updateRide, setCreateModeOff } from "../../../../utils/actions";
 
 const SaveChangesButton = styled(MainActionButton)`
   width: 140px;
 `;
 
-export default ({ dispatch, routeStore }) => {
+export default ({ dispatch, routeStore, routeDispatch }) => {
   const { createMode, currentRoute } = routeStore;
 
   function handleClick() {
-    !createMode && dispatch(updateRide(currentRoute));
+    if (!createMode) {
+      dispatch(updateRide(currentRoute));
+      routeDispatch(setCreateModeOff())
+    } else {
+      dispatch(setRidesData(currentRoute));
+      routeDispatch(setCreateModeOff())
+    }
     //here should go the api call to save ride in db
-    createMode && dispatch(setRidesData(currentRoute));
   }
 
   return (

@@ -16,23 +16,6 @@ const reducer = (state, action) => {
   const { _id, title, waypoints, totalDistance, totalTime } = currentRoute;
 
   switch (action.type) {
-    // case "SET_ROUTE_TITLE":
-    //   return {
-    //     ...state,
-    //     currentRoute: { title: action.payload, ...currentRoute }
-    //   };
-    case "SET_RECORDED_ROUTE":
-      return {
-        ...state,
-        createMode: false,
-        currentRoute: {
-          _id: action.payload._id || _id,
-          title: action.payload.title || title,
-          waypoints: action.payload.waypoints || waypoints,
-          totalDistance: action.payload.totalDistance || totalDistance,
-          totalTime: action.payload.totalTime || totalTime
-        }
-      };
     case "CREATE_NEW_ROUTE":
       return {
         createMode: true,
@@ -44,11 +27,11 @@ const reducer = (state, action) => {
           totalTime: 0
         }
       };
-    case "UPDATE_NEW_ROUTE":
+    case "UPDATE_ROUTE":
       return {
-        createMode: true,
+        createMode:
+          action.payload.createMode === "off" ? false : state.createMode,
         currentRoute: {
-          ...currentRoute,
           _id: action.payload._id || _id,
           title: action.payload.title || title,
           waypoints: action.payload.waypoints || waypoints,
@@ -56,6 +39,11 @@ const reducer = (state, action) => {
           totalTime: action.payload.totalTime || totalTime
         }
       };
+      case "CREATE_MODE_OFF":
+        return {
+          ...state,
+          createMode: false
+        }
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { setRecordedRoute } from "../../../../utils/actions";
+import { updateRoute } from "../../../../utils/actions";
 import { colors } from "../../../../styles/vars";
 
 const Nav = styled.nav`
@@ -32,7 +32,7 @@ export default ({ routeDispatch, rides, setCoords }) => {
     const ride = rides.find(ride => id === ride._id);
     //setting currentRoute to display on map
     setCoords(ride.waypoints);
-    routeDispatch(setRecordedRoute(ride));
+    routeDispatch(updateRoute({ createMode: "off", ...ride }));
   }
 
   return (
