@@ -27,6 +27,10 @@ const reducer = (state, action) => {
       state.splice(i, 1, action.payload);
       return state;
     }
+    case "DELETE_RIDE": {
+      return state.filter(ride => ride._id !== action.payload._id);
+    }
+
     default:
       return state;
   }

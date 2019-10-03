@@ -26,6 +26,9 @@ export function setRidesData(data) {
 export function updateRide(data) {
   return { type: "UPDATE_RIDE", payload: data };
 }
+export function deleteRide(data) {
+  return { type: "DELETE_RIDE", payload: data };
+}
 
 //useSetCurrentRoute hook
 export function createNewRoute(coords) {
@@ -35,5 +38,5 @@ export function updateRoute(data) {
   return { type: "UPDATE_ROUTE", payload: data };
 }
 export function setCreateModeOff() {
-  return { type: "CREATE_MODE_OFF"};
+  return { type: "CREATE_MODE_OFF" };
 }
