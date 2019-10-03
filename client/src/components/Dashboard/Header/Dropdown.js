@@ -1,6 +1,13 @@
 import React from "react";
+import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import { DropdownMenu, DropdownButton, LogOutIcon } from "./styles";
+import ListButton from "../../shared/ListButton";
+import { DropdownMenu, LogOutIcon } from "./styles";
+
+const DropdownButton = styled(ListButton)`
+  font-size: 1rem;
+  padding: 20px;
+`;
 
 const Menu = props => {
   function handleLogOut() {
