@@ -1,8 +1,19 @@
 import { useEffect } from "react";
 import "leaflet-routing-machine";
-import { setRouteEvent } from "../../../../utils/actions";
+import { updateRoute } from "../../../../utils/actions";
 
-function filterRouteEventObj(wps, routes) {
+function stringGen(yourNumber) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < yourNumber; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+function filterRouteEventObj(wps, routes, createMode) {
   const waypoints = Object.values(wps).map(wp => [
     wp.latLng.lat,
     wp.latLng.lng
@@ -10,31 +21,29 @@ function filterRouteEventObj(wps, routes) {
   const totalTime = routes[0].summary.totalTime;
   const totalDistance = routes[0].summary.totalDistance;
 
-  return {
-    waypoints,
-    totalDistance,
-    totalTime
-  };
+  const newRideObj = { _id: stringGen(7), waypoints, totalDistance, totalTime };
+  const updateRideObj = { waypoints, totalDistance, totalTime };
+  const routeObj = createMode ? newRideObj : updateRideObj;
+  //this in the future will be just one obj since we don't need to pass _id from here
+  // for new route.
+  return routeObj;
 }
 
-export default (routeControl = {}, store, dispatch) => {
-  const { currentCoords, createMode } = store;
-  const wps = createMode ? [currentCoords, currentCoords] : currentCoords;
+export default (routeControl, routeStore, routeDispatch, coords) => {
+  const { createMode } = routeStore;
+  const wps = createMode ? [coords, coords] : coords;
 
   useEffect(() => {
     routeControl.current.setWaypoints(wps);
 
     function setRouteData(e) {
       const { waypoints, routes } = e;
-      const routeData = filterRouteEventObj(waypoints, routes);
-      dispatch(setRouteEvent(routeData));
+      const routeData = filterRouteEventObj(waypoints, routes, createMode);
+      routeDispatch(updateRoute(routeData));
     }
 
     routeControl.current.addEventListener("routesfound", setRouteData);
     return () =>
       routeControl.current.removeEventListener("routesfound", setRouteData);
-  }, [currentCoords]);
+  }, [coords]);
 };
-
-//only problem here is that whenever routesfound event is triggered
-//there's a dispatch to context, may bring some perf problems.
