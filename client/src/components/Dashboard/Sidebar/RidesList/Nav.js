@@ -1,16 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { updateRoute } from "../../../../utils/actions";
 import ListButton from "../../../shared/ListButton";
-
-const Nav = styled.nav`
-  margin-top: 5px;
-`;
-const Ul = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
+import Ul from "../../../shared/Ul";
 
 export default ({ routeDispatch, rides, setCoords }) => {
   function handleClick(e) {
@@ -22,7 +13,7 @@ export default ({ routeDispatch, rides, setCoords }) => {
   }
 
   return (
-    <Nav>
+    <nav style={{ marginTop: "5px" }}>
       <Ul>
         {rides.map((ride, i) => (
           <li key={i}>
@@ -32,8 +23,6 @@ export default ({ routeDispatch, rides, setCoords }) => {
           </li>
         ))}
       </Ul>
-    </Nav>
+    </nav>
   );
 };
-
-//maybe check if li elements can hold onClick listeners.
