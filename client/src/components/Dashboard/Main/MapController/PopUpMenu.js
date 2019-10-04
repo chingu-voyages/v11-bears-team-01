@@ -4,11 +4,13 @@ import Ul from "../../../shared/Ul";
 import ListButton from "../../../shared/ListButton";
 import { DotsVerticalRounded } from "styled-icons/boxicons-regular/DotsVerticalRounded";
 import { Trash } from "styled-icons/boxicons-regular/Trash";
-import { deleteRide } from "../../../../utils/actions";
+import { deleteRide, createNewRoute } from "../../../../utils/actions";
 
-const DeleteButton = styled(ListButton)`
+const PopUpMenuItem = styled(ListButton)`
   width: 170px;
   font-size: 12px;
+  opacity: ${props => (props.disabled ? 0.3 : 1)};
+  cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
 `;
 const PopUpMenu = styled(Ul)`
   position: absolute;
@@ -21,6 +23,7 @@ const PopUpMenu = styled(Ul)`
 const Dots = styled(DotsVerticalRounded)`
   cursor: pointer;
   height: 42px;
+  color: rgba(19, 30, 65, 0.8);
 `;
 
 export default ({ dispatch, routeStore, routeDispatch }) => {
@@ -28,7 +31,11 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
   const { createMode } = routeStore;
 
   function handleDelete() {
-    !createMode && dispatch(deleteRide(routeStore.currentRoute));
+    if (!createMode) {
+      dispatch(deleteRide(routeStore.currentRoute));
+      routeDispatch(createNewRoute());
+      setOpen(false);
+    }
     //set route to create new route
   }
 
@@ -37,12 +44,13 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
       <Dots size={"30px"} onClick={() => setOpen(!open)} />
       {open && (
         <PopUpMenu>
-          <DeleteButton onClick={handleDelete}>
+          <PopUpMenuItem
+            onClick={handleDelete}
+            disabled={createMode ? true : false}
+          >
             <Trash size={"15px"} style={{ marginRight: "5px" }} />
             Delete route
-          </DeleteButton>
-          <DeleteButton>Dropdown item</DeleteButton>
-          <DeleteButton>Dropdown item</DeleteButton>
+          </PopUpMenuItem>
         </PopUpMenu>
       )}
     </React.Fragment>
