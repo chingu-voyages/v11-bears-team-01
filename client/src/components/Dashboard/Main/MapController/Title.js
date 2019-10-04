@@ -4,12 +4,14 @@ import ContentEditable from "react-contenteditable";
 import { updateRoute } from "../../../../utils/actions";
 
 const Title = styled(ContentEditable)`
-  font-family: "Archivo", sans-serif;
   outline: none;
-  color: #444444;
+  margin-right: 15px;
+  font-size: 15px;
+  color: rgba(19, 30, 65, 0.8);
   text-align: left;
   width: 30%;
   min-width: 200px;
+  max-width: 200px;
 `;
 
 export default ({ routeDispatch, routeStore, title, setTitle }) => {

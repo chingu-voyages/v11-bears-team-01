@@ -8,8 +8,8 @@ import {
 } from "../../../../utils/actions";
 
 const SaveChangesButton = styled(MainActionButton)`
-  width: 85%;
   min-width: 170px;
+  width: 190px;
   margin: 0;
 `;
 
