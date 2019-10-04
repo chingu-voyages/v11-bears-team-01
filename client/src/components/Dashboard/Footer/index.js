@@ -12,9 +12,9 @@ const Footer = styled.footer`
 export default () => {
   return (
     <React.Fragment>
-      <Footer>
+      {/* <Footer>
         <h3>Footer</h3>
-      </Footer>
+      </Footer> */}
     </React.Fragment>
   );
 };

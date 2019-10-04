@@ -4,7 +4,7 @@ const initialState = {
   createMode: true,
   currentRoute: {
     _id: "",
-    title: "Untitled",
+    title: "Untitled new ride",
     waypoints: [],
     totalDistance: 0,
     totalTime: 0
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
         createMode: true,
         currentRoute: {
           _id: "",
-          title: "Untitled",
+          title: "Untitled new ride",
           waypoints: action.payload,
           totalDistance: 0,
           totalTime: 0
@@ -39,11 +39,11 @@ const reducer = (state, action) => {
           totalTime: action.payload.totalTime || totalTime
         }
       };
-      case "CREATE_MODE_OFF":
-        return {
-          ...state,
-          createMode: false
-        }
+    case "CREATE_MODE_OFF":
+      return {
+        ...state,
+        createMode: false
+      };
     default:
       return state;
   }

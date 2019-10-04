@@ -22,13 +22,16 @@ const config = {
 
 export default ({ routeStore, routeDispatch, setCoords, coords }) => {
   const { dispatch } = useContext(RidesContext);
+  const { createMode } = routeStore;
   //hook that calculates user's current position
   const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
   useEffect(() => {
     //setting the coords to user's current position
-    !error && lat && setCoords([lat, lng]);
-  }, [lat]);
+    if (!error && lat && createMode) {
+      setCoords([lat, lng]);
+    }
+  }, [lat, createMode]);
 
   return (
     <Main>
