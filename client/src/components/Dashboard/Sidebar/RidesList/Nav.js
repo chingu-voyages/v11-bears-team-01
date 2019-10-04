@@ -3,7 +3,9 @@ import { updateRoute } from "../../../../utils/actions";
 import ListButton from "../../../shared/ListButton";
 import Ul from "../../../shared/Ul";
 
-export default ({ routeDispatch, rides, setCoords }) => {
+export default ({ routeStore, routeDispatch, rides, setCoords }) => {
+  const { currentRoute } = routeStore;
+
   function handleClick(e) {
     const id = e.target.dataset.id;
     const ride = rides.find(ride => id === ride._id);
@@ -17,7 +19,12 @@ export default ({ routeDispatch, rides, setCoords }) => {
       <Ul>
         {rides.map((ride, i) => (
           <li key={i}>
-            <ListButton data-id={ride._id} onClick={e => handleClick(e)}>
+            <ListButton
+              style={{ margin: "3px 0" }}
+              data-id={ride._id}
+              onClick={e => handleClick(e)}
+              selected={currentRoute._id === ride._id ? true : false}
+            >
               {ride.title}
             </ListButton>
           </li>

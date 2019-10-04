@@ -21,15 +21,15 @@ const Content = styled.div`
 
 export default () => {
   const { userStore } = useFetchUserData();
-  const { routeStore, routeDispatch, coords, setCoords } = useSetCurrentRoute();
+  const props = useSetCurrentRoute();
 
   return (
     <React.Fragment>
       <Header user={userStore.user} />
       <RidesProvider>
         <Content>
-          <Sidebar {...{ routeDispatch, setCoords }} />
-          <Main {...{ routeStore, routeDispatch, setCoords, coords }} />
+          <Sidebar {...props} />
+          <Main {...props} />
         </Content>
       </RidesProvider>
       <Footer />
