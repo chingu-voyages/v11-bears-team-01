@@ -10,12 +10,12 @@ const Sidebar = styled.aside`
   padding: 25px 30px;
 `;
 
-export default ({ routeDispatch, setCoords }) => {
+export default ({ routeStore, routeDispatch, setCoords }) => {
   const { rides } = useContext(RidesContext);
   return (
     <Sidebar>
       <CreateButton {...{ routeDispatch, setCoords }} />
-      <RidesList {...{ routeDispatch, rides, setCoords }} />
+      <RidesList {...{ routeStore, routeDispatch, rides, setCoords }} />
     </Sidebar>
   );
 };

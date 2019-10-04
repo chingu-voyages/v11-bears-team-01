@@ -3,7 +3,23 @@ import { updateRoute } from "../../../../utils/actions";
 import ListButton from "../../../shared/ListButton";
 import Ul from "../../../shared/Ul";
 
-export default ({ routeDispatch, rides, setCoords }) => {
+const style = {
+  nav: {
+    marginTop: "5px"
+  },
+  ListButton: {
+    margin: "3px 0"
+  },
+  noRides: {
+    textAlign: "left",
+    color: "rgba(19,30,65,0.6)",
+    padding: "10px"
+  }
+};
+
+export default ({ routeStore, routeDispatch, rides, setCoords }) => {
+  const { currentRoute } = routeStore;
+
   function handleClick(e) {
     const id = e.target.dataset.id;
     const ride = rides.find(ride => id === ride._id);
@@ -13,11 +29,17 @@ export default ({ routeDispatch, rides, setCoords }) => {
   }
 
   return (
-    <nav style={{ marginTop: "5px" }}>
+    <nav style={style.nav}>
       <Ul>
+        {rides.length < 1 && <h3 style={style.noRides}>No rides to show.</h3>}
         {rides.map((ride, i) => (
           <li key={i}>
-            <ListButton data-id={ride._id} onClick={e => handleClick(e)}>
+            <ListButton
+              style={style.ListButton}
+              data-id={ride._id}
+              onClick={handleClick}
+              selected={currentRoute._id === ride._id ? true : false}
+            >
               {ride.title}
             </ListButton>
           </li>
