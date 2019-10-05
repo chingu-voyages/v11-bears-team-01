@@ -25,7 +25,7 @@ export default ({ user, toggleSidebar, sidebarOpen }) => {
 
   return (
     <Header>
-      <Section flex={"1"} style={{ margin: "0 20px" }}>
+      <Section flex={"1"} >
         <HamburgerIcon open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <Logo />
       </Section>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Stats = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 0;
+  margin: 0;
   width: 200px;
   min-width: 100px;
   text-align: left;

@@ -8,25 +8,33 @@ import Stats from "./Stats";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 96%;
+  flex-wrap: wrap-reverse;
   max-height: 40%;
   padding: 1.5em 0;
+  margin: 0 10px;
 `;
 const ButtonsWrapper = styled.div`
-  position: relative;
-  flex: 0 1;
   display: flex;
   justify-content: flex-end;
+  position: relative;
+  flex: 0 1;
+  margin: 0 12px;
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+    margin: 0px 10px 20px 10px;
+  }
 `;
 const RouteCard = styled.div`
+  display: flex;
   flex: 0 1 50%;
   flex-wrap: wrap;
-  display: flex;
   align-items: center;
-  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
-  padding: 20px;
+  padding: 23px 17px;
   height: auto;
-  min-height: 90px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
+  @media (max-width: 1000px) {
+    margin: 5px 12px;
+  }
 `;
 
 export default props => {
