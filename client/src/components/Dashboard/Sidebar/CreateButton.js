@@ -8,13 +8,14 @@ const CreateButton = styled(MainActionButton)`
   min-width: 220px;
 `;
 
-export default ({ routeDispatch, setCoords }) => {
+export default ({ routeDispatch, setCoords, toggleSidebar, sidebarOpen }) => {
   const { latitude: lat, longitude: lng, error } = usePosition(false);
 
   function handleClick() {
     if (!error && lat) {
       setCoords([lat, lng]);
       routeDispatch(createNewRoute([lat, lng]));
+      toggleSidebar(!sidebarOpen);
     }
   }
   return <CreateButton onClick={handleClick}>Create new ride</CreateButton>;

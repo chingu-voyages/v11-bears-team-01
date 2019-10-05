@@ -17,7 +17,14 @@ const style = {
   }
 };
 
-export default ({ routeStore, routeDispatch, rides, setCoords }) => {
+export default ({
+  routeStore,
+  routeDispatch,
+  rides,
+  setCoords,
+  toggleSidebar,
+  sidebarOpen
+}) => {
   const { currentRoute } = routeStore;
 
   function handleClick(e) {
@@ -26,6 +33,7 @@ export default ({ routeStore, routeDispatch, rides, setCoords }) => {
     //setting currentRoute to display on map
     setCoords(ride.waypoints);
     routeDispatch(updateRoute({ createMode: "off", ...ride }));
+    toggleSidebar(!sidebarOpen);
   }
 
   return (

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { Section } from "./styles";
 import UserDisplay from "./UserDisplay";
 import Logo from "./Logo";
-import useOpenMenu from "./useOpenMenu";
+import useOpenMenu from "../../../utils/useOpenMenu";
 import Dropdown from "./Dropdown";
+import HamburgerIcon from "./HamburgerIcon";
 
 const Header = styled.header`
   display: flex;
@@ -18,16 +20,17 @@ const Header = styled.header`
   font-family: "Archivo", sans-serif;
 `;
 
-export default ({ user }) => {
+export default ({ user, toggleSidebar, sidebarOpen }) => {
   const { openMenu, handleOpenMenu } = useOpenMenu();
 
   return (
-    <React.Fragment>
-      <Header>
+    <Header>
+      <Section flex={"1"} style={{ margin: "0 20px" }}>
+        <HamburgerIcon open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <Logo />
-        <UserDisplay {...{ user, handleOpenMenu }} />
-        {openMenu && <Dropdown />}
-      </Header>
-    </React.Fragment>
+      </Section>
+      <UserDisplay {...{ user, handleOpenMenu }} />
+      {openMenu && <Dropdown />}
+    </Header>
   );
 };

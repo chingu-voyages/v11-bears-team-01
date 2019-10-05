@@ -11,6 +11,9 @@ const Main = styled.main`
   height: 100%;
   width: 100%;
   flex: 0 1 80%;
+  @media (max-width: 1000px) {
+    flex: 0 1 100%;
+  }
 `;
 const MapContainer = styled.div`
   width: 100%;
