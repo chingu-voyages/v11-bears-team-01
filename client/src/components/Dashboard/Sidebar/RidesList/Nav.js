@@ -39,7 +39,11 @@ export default ({
   return (
     <nav style={style.nav}>
       <Ul>
-        {rides.length < 1 && <h3 style={style.noRides}>No rides to show.</h3>}
+        {rides.length < 1 && (
+          <h3 style={style.noRides}>
+            Drag & drop the marker to draw your first route.
+          </h3>
+        )}
         {rides.map((ride, i) => (
           <li key={i}>
             <ListButton

@@ -15,18 +15,17 @@ const Container = styled.div`
 `;
 const ButtonsWrapper = styled.div`
   display: flex;
+  /* flex: 0 1; */
   justify-content: flex-end;
   position: relative;
-  flex: 0 1;
-  margin: 0 12px;
-  @media (max-width: 768px) {
+  margin: 0px 10px 20px 20px;
+  @media (max-width: 1002px) {
     justify-content: flex-start;
-    margin: 0px 10px 20px 10px;
   }
 `;
 const RouteCard = styled.div`
+  /* flex: 0 1 2; */
   display: flex;
-  flex: 0 1 50%;
   flex-wrap: wrap;
   align-items: center;
   padding: 23px 17px;

@@ -5,7 +5,8 @@ import MainActionButton from "../../shared/MainActionButton";
 import { usePosition } from "use-position";
 
 const CreateButton = styled(MainActionButton)`
-  min-width: 220px;
+  min-width: 235px;
+  /* max-width: 300px; */
 `;
 
 export default ({ routeDispatch, setCoords, toggleSidebar, sidebarOpen }) => {

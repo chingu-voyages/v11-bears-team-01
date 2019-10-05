@@ -10,12 +10,14 @@ const Sidebar = styled.aside`
   padding: 25px 30px;
   transition: transform 200ms;
   background: #fff;
-
+  max-width: 370px;
   @media (max-width: 1000px) {
     position: absolute;
     z-index: 2000;
+    width: 70vw;
     box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
     transform: ${props => (props.open ? "" : "translateX(-100%)")};
+    padding: 25px 20px;
   }
 `;
 
