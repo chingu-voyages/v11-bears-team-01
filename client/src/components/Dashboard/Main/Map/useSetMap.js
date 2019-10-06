@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
+import "leaflet-control-geocoder";
 
 export default (coords = []) => {
   const mapRef = useRef();
@@ -22,7 +23,12 @@ export default (coords = []) => {
       waypoints: coords,
       routeWhileDragging: false,
       routeDragInterval: 0,
-      router: L.Routing.mapbox(process.env.REACT_APP_MAPBOX_TOKEN)
+      router: L.Routing.mapbox(process.env.REACT_APP_MAPBOX_TOKEN),
+      plan: L.Routing.plan([], {
+        geocoder: L.Control.Geocoder.nominatim(),
+        geocodersClassName: "geocoders-container",
+        reverseWaypoints: true
+      })
     }).addTo(mapRef.current);
   }, []);
 
