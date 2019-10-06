@@ -5,7 +5,7 @@ import { updateRoute } from "../../../../utils/actions";
 
 const Title = styled(ContentEditable)`
   outline: none;
-  margin-right: 15px;
+  padding: 0px 15px 15px 0;
   font-size: 15px;
   color: rgba(19, 30, 65, 0.8);
   text-align: left;
@@ -28,7 +28,11 @@ export default ({ routeDispatch, routeStore, title, setTitle }) => {
 
   return (
     <React.Fragment>
-      <Title html={`<h3>${title}</h3>`} id="title" onChange={handleTitle} />
+      <Title
+        html={`<h3 id="title-editable">${title}</h3>`}
+        id="title"
+        onChange={handleTitle}
+      />
     </React.Fragment>
   );
 };

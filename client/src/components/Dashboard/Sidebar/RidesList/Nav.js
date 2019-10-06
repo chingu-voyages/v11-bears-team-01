@@ -17,7 +17,14 @@ const style = {
   }
 };
 
-export default ({ routeStore, routeDispatch, rides, setCoords }) => {
+export default ({
+  routeStore,
+  routeDispatch,
+  rides,
+  setCoords,
+  toggleSidebar,
+  sidebarOpen
+}) => {
   const { currentRoute } = routeStore;
 
   function handleClick(e) {
@@ -26,12 +33,17 @@ export default ({ routeStore, routeDispatch, rides, setCoords }) => {
     //setting currentRoute to display on map
     setCoords(ride.waypoints);
     routeDispatch(updateRoute({ createMode: "off", ...ride }));
+    toggleSidebar(!sidebarOpen);
   }
 
   return (
     <nav style={style.nav}>
       <Ul>
-        {rides.length < 1 && <h3 style={style.noRides}>No rides to show.</h3>}
+        {rides.length < 1 && (
+          <h3 style={style.noRides}>
+            Drag & drop the marker to draw your first route.
+          </h3>
+        )}
         {rides.map((ride, i) => (
           <li key={i}>
             <ListButton

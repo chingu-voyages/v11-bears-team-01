@@ -11,7 +11,7 @@ export const Section = styled.section`
   height: 100%;
   justify-content: ${props => props.justify};
   align-items: center;
-  margin: 0 40px;
+  margin: 0 20px;
 `;
 
 export const UserIcon = styled(User)`

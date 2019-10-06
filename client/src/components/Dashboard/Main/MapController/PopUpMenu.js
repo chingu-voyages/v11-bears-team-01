@@ -25,6 +25,10 @@ const Dots = styled(DotsVerticalRounded)`
   height: 42px;
   color: rgba(19, 30, 65, 0.8);
 `;
+const Container = styled.div`
+  height: fit-content;
+  position: relative;
+`;
 
 export default ({ dispatch, routeStore, routeDispatch }) => {
   const [open, setOpen] = useState(false);
@@ -40,7 +44,7 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
   }
 
   return (
-    <React.Fragment>
+    <Container>
       <Dots size={"30px"} onClick={() => setOpen(!open)} />
       {open && (
         <PopUpMenu>
@@ -53,6 +57,6 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
           </PopUpMenuItem>
         </PopUpMenu>
       )}
-    </React.Fragment>
+    </Container>
   );
 };
