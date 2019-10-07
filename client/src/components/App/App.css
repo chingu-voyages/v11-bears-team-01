@@ -6,13 +6,3 @@
   margin: 0;
 }
 
-/* leaflet control declarations */
-.leaflet-routing-alt {
-  display: none;
-}
-.geocoders-container {
-  background: blue;
-}
-.leaflet-right {
-  right: 20px;
-}
