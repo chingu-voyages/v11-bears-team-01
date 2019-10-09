@@ -65,9 +65,11 @@ exports.remove = (req, res) => {
 // UPDATE A RIDE
 exports.update = (req, res) => {
   const ride = req.ride;
-  ride.name = req.body.name;
-  ride.description = req.body.description;
-  ride.geo = req.body.geo;
+  ride.title = req.body.title;
+  ride.waypoints = req.body.waypoints;
+  ride.totalDistance = req.body.totalDistance;
+  ride.totalTime = req.body.totalTime;
+  
   ride.save((err, data) => {
     if (err) {
       return res.status(400).json({
