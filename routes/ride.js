@@ -12,8 +12,8 @@ const {
 
 router.get("/ride/:rideId", read);
 router.post("/ride/create", create);
-router.delete("/ride/:rideId/:userId", remove);
-router.put("/ride/:rideId/:userId", update);
+router.delete("/ride/:rideId", remove);
+router.put("/ride/:rideId", update);
 router.get("/rides", list);
 
 router.param("rideId", rideById);
