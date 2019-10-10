@@ -2,6 +2,7 @@
   text-align: center;
 }
 
-.leaflet-routing-container {
-  display: none
+#title-editable {
+  margin: 0;
 }
+

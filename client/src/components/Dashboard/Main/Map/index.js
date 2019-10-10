@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import useSetMap from "./useSetMap";
 import useHandleRoute from "./useHandleRoute";
+import "./control.css";
 
 const Map = styled.div`
   width: 100%;
@@ -9,7 +10,6 @@ const Map = styled.div`
 `;
 
 export default ({ routeStore, routeDispatch, coords }) => {
-  const { currentRoute } = routeStore;
   const { mapRef, routeControl } = useSetMap(coords);
   useHandleRoute(routeControl, routeStore, routeDispatch, coords);
 
