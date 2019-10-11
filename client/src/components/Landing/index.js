@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Hero from "./Hero";
+import { Route } from "styled-icons/fa-solid/Route";
 
 const LandingLayout = styled.div`
   width: 100vw;
@@ -22,12 +23,24 @@ const AuthWrapper = styled.div`
     flex-basis: 50%;
   }
 `;
+const AppName = styled.h1`
+  font-size: 25px;
+  /* color: #1c01ff; */
+  -webkit-text-stroke: 1px black;
+  color: white;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+  letter-spacing: 1.5px;
+`;
 
 export default ({ children }) => {
   return (
     <LandingLayout>
       <Hero />
-      <AuthWrapper>{children}</AuthWrapper>
+      <AuthWrapper>
+        <AppName>Tripia</AppName>
+        {children}
+      </AuthWrapper>
     </LandingLayout>
   );
 };
