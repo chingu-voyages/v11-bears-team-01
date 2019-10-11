@@ -12,7 +12,7 @@ const Background = styled.div`
   height: 100%;
 `;
 const style = {
-  color: "rgba(19, 30, 65, 0.8)",
+  color: "rgba(19, 30, 65, 0.9)",
   padding: "30px"
 };
 const icons = [
@@ -50,5 +50,4 @@ export default () => {
     </Background>
   );
 };
-
 //this whole component shouldnt rerender when the auth wrapper changes state but ITS FUN
