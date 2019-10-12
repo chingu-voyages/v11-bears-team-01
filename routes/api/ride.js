@@ -8,7 +8,7 @@ const {
   list,
   remove,
   update
-} = require("../controllers/ride");
+} = require("../../controllers/ride");
 
 router.get("/ride/:rideId", read);
 router.post("/ride/create", create);
