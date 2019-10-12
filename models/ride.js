@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const crypto = require("crypto");
-const uuidv1 = require("uuid/v1");
 
 // Creates a LineString Schema for the bike rides
 
