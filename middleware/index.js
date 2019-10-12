@@ -5,26 +5,17 @@ const passport = require("passport");
 let middlewareObj = {};
 
 middlewareObj.checkRideOwnership = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    rides.findById(req.params.id, (err, foundRide) => {
-      if (err || !foundRide) {
-        console.log("no ride found for " + req.params.id); //temp console log
-        res.redirect("back"); //ride not found
-      } else {
-        if (foundRide.author.id.equals(req.user._id)) {
-          //if user owns ride
-          next();
-        } else {
-          //user does not have permission
-          console.log("User " + req.user._id + "does not own ride"); //temp console log.
-          res.redirect("back");
-        }
+  rides.findById(req.params.id, (err, foundRide) => {
+    if (err || !foundRide) {
+      console.log("no ride found for " + req.params.id); //temp console log
+      res.json({ error: "No ride" });
+    } else {
+      if (foundRide.author.id.equals(req.user._id)) {
+        //if user owns ride
+        next();
       }
-    });
-  } else {
-    console.log("You must be logged in"); //temp console log
-    res.redirect("back");
-  }
+    }
+  });
 };
 
 middlewareObj.isLoggedIn = passport.authenticate("jwt", { session: false });
