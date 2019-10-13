@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const { isLoggedIn } = require("../../middleware/index");
 const {
   create,
   rideById,
@@ -10,11 +10,11 @@ const {
   update
 } = require("../../controllers/ride");
 
-router.get("/ride/:rideId", read);
-router.post("/ride/create", create);
-router.delete("/ride/:rideId", remove);
-router.put("/ride/:rideId", update);
-router.get("/rides", list);
+router.get("/ride/:rideId", isLoggedIn, read);
+router.post("/ride/create", isLoggedIn, create);
+router.delete("/ride/:rideId", isLoggedIn, remove);
+router.put("/ride/:rideId", isLoggedIn, update);
+router.get("/rides", isLoggedIn, list);
 
 router.param("rideId", rideById);
 

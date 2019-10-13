@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 const RideSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    required: true
   },
   title: { type: String, required: true },
 
