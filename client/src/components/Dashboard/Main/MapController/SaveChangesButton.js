@@ -31,7 +31,7 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
       setTimeout(() => {
         setLoading(false);
         setSaved(true);
-        dispatch(updateRide(currentRoute));
+        dispatch(updateRide([currentRoute]));
         routeDispatch(setCreateModeOff());
         setTimeout(() => {
           setSaved(false);
@@ -40,7 +40,7 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
     } else {
       setLoading(true);
       setTimeout(() => {
-        dispatch(setRidesData(currentRoute));
+        dispatch(setRidesData([currentRoute]));
         routeDispatch(setCreateModeOff());
         setLoading(false);
         setSaved(true);
