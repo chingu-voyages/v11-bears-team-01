@@ -22,6 +22,7 @@ exports.read = (req, res) => {
 /// CREATE A RIDE
 exports.create = (req, res) => {
   console.log("req.body", req.body);
+  req.body.user = req.user._id;
   const ride = new Ride(req.body);
   ride.save((err, ride) => {
     if (err) {
@@ -69,7 +70,7 @@ exports.update = (req, res) => {
   ride.waypoints = req.body.waypoints;
   ride.totalDistance = req.body.totalDistance;
   ride.totalTime = req.body.totalTime;
-  
+
   ride.save((err, data) => {
     if (err) {
       return res.status(400).json({
