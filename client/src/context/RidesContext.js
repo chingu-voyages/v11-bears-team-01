@@ -1,22 +1,7 @@
 import React, { createContext, useReducer, useMemo } from "react";
 
 export const RidesContext = createContext();
-const initialState = [
-  {
-    _id: "v9382h9",
-    title: "Route 1",
-    waypoints: [[35, 0], [12, 23]],
-    totalDistance: 0,
-    totalTime: 0
-  },
-  {
-    _id: "ow8uh598",
-    title: "Route 2",
-    waypoints: [[23, 12], [35, 22]],
-    totalDistance: 0,
-    totalTime: 0
-  }
-];
+const initialState = [];
 
 const reducer = (state, action) => {
   switch (action.type) {
