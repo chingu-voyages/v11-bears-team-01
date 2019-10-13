@@ -6,7 +6,7 @@ const initialState = [];
 const reducer = (state, action) => {
   switch (action.type) {
     case "SET_RIDES_DATA":
-      return [...state, action.payload];
+      return [...state, ...action.payload];
     case "UPDATE_RIDE": {
       const i = state.findIndex(ride => ride._id === action.payload._id);
       state.splice(i, 1, action.payload);
@@ -15,7 +15,9 @@ const reducer = (state, action) => {
     case "DELETE_RIDE": {
       return state.filter(ride => ride._id !== action.payload._id);
     }
-
+    case "CLEAN_RIDES": {
+      return [];
+    }
     default:
       return state;
   }

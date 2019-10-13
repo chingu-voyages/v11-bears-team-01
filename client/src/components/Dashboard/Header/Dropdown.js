@@ -3,16 +3,18 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import ListButton from "../../shared/ListButton";
 import { DropdownMenu, LogOutIcon } from "./styles";
+import { setRidesData } from "../../../utils/actions";
 
 const DropdownButton = styled(ListButton)`
   font-size: 1rem;
   padding: 20px;
 `;
 
-const Menu = props => {
+const Menu = ({ history, ridesDispatch }) => {
   function handleLogOut() {
+    ridesDispatch({ type: "CLEAN_RIDES" });
     window.localStorage.removeItem("token");
-    props.history.push("/");
+    history.push("/");
   }
 
   return (

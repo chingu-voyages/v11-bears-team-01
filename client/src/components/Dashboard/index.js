@@ -20,7 +20,7 @@ const Content = styled.div`
 `;
 
 export default () => {
-  const { userStore } = useFetchUserData();
+  const { userStore, ridesDispatch } = useFetchUserData();
   const props = useSetCurrentRoute();
   const { openMenu, handleOpenMenu } = useToggleSidebar();
 
@@ -30,6 +30,7 @@ export default () => {
         user={userStore.user}
         toggleSidebar={handleOpenMenu}
         sidebarOpen={openMenu}
+        ridesDispatch={ridesDispatch}
       />
       <Content>
         <Sidebar
