@@ -21,7 +21,6 @@ exports.read = (req, res) => {
 
 /// CREATE A RIDE
 exports.create = (req, res) => {
-  console.log("req.body", req.body);
   req.body.user = req.user._id;
   const ride = new Ride(req.body);
   ride.save((err, ride) => {
@@ -38,7 +37,8 @@ exports.create = (req, res) => {
 
 // INDEX GET ALL THE RIDES
 exports.list = (req, res) => {
-  Ride.find().exec((err, data) => {
+  let user = req.user._id;
+  Ride.find({ user }).exec((err, data) => {
     if (err) {
       return res.status(400).json({
         err: err
