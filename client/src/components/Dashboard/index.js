@@ -3,6 +3,8 @@ import { RidesProvider } from "../../context/RidesContext";
 import styled from "styled-components";
 //custom hooks
 import useFetchUserData from "./useFetchUserData";
+import useSetCurrentRoute from "./useSetCurrentRoute";
+import useToggleSidebar from "../../utils/useOpenMenu";
 //components
 import Header from "./Header/index";
 import Sidebar from "./Sidebar/index";
@@ -20,14 +22,24 @@ const Content = styled.div`
 
 export default () => {
   const { userStore } = useFetchUserData();
+  const props = useSetCurrentRoute();
+  const { openMenu, handleOpenMenu } = useToggleSidebar();
 
   return (
     <React.Fragment>
-      <Header user={userStore.user} />
+      <Header
+        user={userStore.user}
+        toggleSidebar={handleOpenMenu}
+        sidebarOpen={openMenu}
+      />
       <RidesProvider>
         <Content>
-          <Sidebar />
-          <Main />
+          <Sidebar
+            {...props}
+            sidebarOpen={openMenu}
+            toggleSidebar={handleOpenMenu}
+          />
+          <Main {...props} />
         </Content>
       </RidesProvider>
       <Footer />

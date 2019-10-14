@@ -11,7 +11,7 @@ export const Section = styled.section`
   height: 100%;
   justify-content: ${props => props.justify};
   align-items: center;
-  margin: 0 40px;
+  margin: 0 20px;
 `;
 
 export const UserIcon = styled(User)`
@@ -56,31 +56,4 @@ export const DropdownMenu = styled.div`
 
 export const LogOutIcon = styled(LogOut)`
   margin-right: 7px;
-`;
-
-export const DropdownButton = styled.button`
-  position: relative;
-  z-index: 1005;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 20px 30px;
-  margin: 0;
-  /* background: red; */
-  background-color: #fff;
-  text-align: left;
-  border: none;
-  cursor: pointer;
-  font-family: "Archivo", sans-serif;
-  color: rgba(19, 30, 65, 0.6);
-  font-size: 1rem;
-  font-weight: 500;
-
-  &:hover {
-    background: rgba(205, 206, 228, 0.4);
-    color: rgba(19, 30, 65, 0.8);
-  }
-  &:focus {
-    outline: none;
-  }
 `;

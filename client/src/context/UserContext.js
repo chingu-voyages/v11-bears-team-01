@@ -4,7 +4,6 @@ export const UserContext = createContext();
 
 const initialState = {
   user: { id: "", name: "" }
-  // rides: {}
 };
 
 const reducer = (state, action) => {
@@ -18,11 +17,6 @@ const reducer = (state, action) => {
           name: action.payload.name
         }
       };
-    // case "SET_RIDES_DATA":
-    //   return {
-    //     ...state,
-    //     rides: action.payload
-    //   };
     default:
       return state;
   }

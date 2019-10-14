@@ -8,14 +8,29 @@ const Sidebar = styled.aside`
   height: 100%;
   flex: 0 1 20%;
   padding: 25px 30px;
+  transition: transform 200ms;
+  background: #fff;
+  max-width: 370px;
+  @media (max-width: 1000px) {
+    position: absolute;
+    z-index: 2000;
+    width: 70vw;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
+    transform: ${props => (props.open ? "" : "translateX(-100%)")};
+    padding: 25px 20px;
+  }
 `;
 
-export default () => {
-  const { dispatch, store } = useContext(RidesContext);
+export default props => {
+  const { rides } = useContext(RidesContext);
+  const { routeDispatch, setCoords, toggleSidebar, sidebarOpen } = props;
+
   return (
-    <Sidebar>
-      <CreateButton {...{ dispatch }} />
-      <RidesList {...{ dispatch, store }} />
+    <Sidebar open={sidebarOpen}>
+      <CreateButton
+        {...{ routeDispatch, setCoords, toggleSidebar, sidebarOpen }}
+      />
+      <RidesList {...{ ...props, rides }} />
     </Sidebar>
   );
 };

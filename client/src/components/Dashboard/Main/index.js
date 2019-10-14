@@ -2,8 +2,6 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { RidesContext } from "../../../context/RidesContext";
 import { usePosition } from "use-position";
-import useSetCurrentRoute from "./useSetCurrentRoute";
-import { setCoords } from "../../../utils/actions";
 import Map from "./Map/index";
 import MapController from "./MapController/index";
 
@@ -13,25 +11,39 @@ const Main = styled.main`
   height: 100%;
   width: 100%;
   flex: 0 1 80%;
+  @media (max-width: 1000px) {
+    flex: 0 1 100%;
+  }
+`;
+const MapContainer = styled.div`
+  width: 100%;
+  height: 60%;
 `;
 const config = {
   enableHighAccuracy: true
 };
 
-export default () => {
-  const { store, dispatch } = useContext(RidesContext);
-  const { currentCoords } = store;
-  const { currentRoute, routeDispatch } = useSetCurrentRoute();
+export default ({ routeStore, routeDispatch, setCoords, coords }) => {
+  const { dispatch } = useContext(RidesContext);
+  const { createMode } = routeStore;
+  //hook that calculates user's current position
   const { latitude: lat, longitude: lng, error } = usePosition(false, config);
 
   useEffect(() => {
-    !error && lat && dispatch(setCoords([lat, lng]));
-  }, [lat]);
+    //setting the coords to user's current position
+    if (!error && lat && createMode) {
+      setCoords([lat, lng]);
+    }
+  }, [lat, createMode]);
 
   return (
     <Main>
-      {currentCoords.length > 0 && <Map {...{ store, routeDispatch }} />}
-      <MapController {...{ dispatch, currentRoute, store }} />
+      <MapContainer>
+        {coords.length > 0 && (
+          <Map {...{ routeStore, routeDispatch, coords }} />
+        )}
+      </MapContainer>
+      <MapController {...{ dispatch, routeStore, routeDispatch }} />
     </Main>
   );
 };
