@@ -8,10 +8,11 @@ import MapController from "./MapController/index";
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   flex: 0 1 80%;
   @media (max-width: 1000px) {
+    margin-bottom: 10em;
     flex: 0 1 100%;
   }
 `;

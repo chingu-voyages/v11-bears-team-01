@@ -15,7 +15,7 @@ const Content = styled.div`
   display: flex;
   position: relative;
   width: 100vw;
-  height: 100vh;
+  /* min-height: 100vh; */
   top: 4em;
   right: 0;
 `;
