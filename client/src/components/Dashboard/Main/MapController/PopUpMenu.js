@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { PulseLoader } from "react-spinners";
 import Ul from "../../../shared/Ul";
 import ListButton from "../../../shared/ListButton";
 import { DotsVerticalRounded } from "styled-icons/boxicons-regular/DotsVerticalRounded";
@@ -11,6 +13,10 @@ const PopUpMenuItem = styled(ListButton)`
   font-size: 12px;
   opacity: ${props => (props.disabled ? 0.3 : 1)};
   cursor: ${props => (props.disabled ? "not-allowed" : "pointer")};
+`;
+const LoaderContainer = styled(PopUpMenuItem)`
+  display: flex;
+  justify-content: center;
 `;
 const PopUpMenu = styled(Ul)`
   position: absolute;
@@ -32,15 +38,25 @@ const Container = styled.div`
 
 export default ({ dispatch, routeStore, routeDispatch }) => {
   const [open, setOpen] = useState(false);
-  const { createMode } = routeStore;
+  const [loading, setLoading] = useState(false);
+  const { createMode, currentRoute } = routeStore;
 
   function handleDelete() {
     if (!createMode) {
-      dispatch(deleteRide(routeStore.currentRoute));
-      routeDispatch(createNewRoute());
-      setOpen(false);
+      setLoading(true);
+      axios
+        .delete(`/api/ride/${currentRoute._id}`)
+        .then(() => {
+          dispatch(deleteRide(currentRoute));
+          routeDispatch(createNewRoute());
+          setOpen(false);
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+          setOpen(false);
+        });
     }
-    //set route to create new route
   }
 
   return (
@@ -48,13 +64,24 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
       <Dots size={"30px"} onClick={() => setOpen(!open)} />
       {open && (
         <PopUpMenu>
-          <PopUpMenuItem
-            onClick={handleDelete}
-            disabled={createMode ? true : false}
-          >
-            <Trash size={"15px"} style={{ marginRight: "5px" }} />
-            Delete route
-          </PopUpMenuItem>
+          {!loading && (
+            <PopUpMenuItem
+              onClick={handleDelete}
+              disabled={createMode ? true : false}
+            >
+              <Trash size={"15px"} style={{ marginRight: "5px" }} />
+              Delete route
+            </PopUpMenuItem>
+          )}
+          {loading && (
+            <LoaderContainer>
+              <PulseLoader
+                size={8}
+                color={"rgba(19, 30, 65, 0.8)"}
+                loading={loading}
+              />
+            </LoaderContainer>
+          )}
         </PopUpMenu>
       )}
     </Container>
