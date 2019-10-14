@@ -34,7 +34,8 @@ export default (routeControl, routeStore, routeDispatch, coords) => {
   const wps = createMode ? [coords, coords] : coords;
 
   useEffect(() => {
-    routeControl.current.setWaypoints(wps);
+    let c = routeControl.current;
+    c.setWaypoints(wps);
 
     function setRouteData(e) {
       const { waypoints, routes } = e;
@@ -42,8 +43,7 @@ export default (routeControl, routeStore, routeDispatch, coords) => {
       routeDispatch(updateRoute(routeData));
     }
 
-    routeControl.current.addEventListener("routesfound", setRouteData);
-    return () =>
-      routeControl.current.removeEventListener("routesfound", setRouteData);
+    c.addEventListener("routesfound", setRouteData);
+    return () => c.removeEventListener("routesfound", setRouteData);
   }, [coords]);
 };

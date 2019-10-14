@@ -1,5 +1,4 @@
 import React from "react";
-import { RidesProvider } from "../../context/RidesContext";
 import styled from "styled-components";
 //custom hooks
 import useFetchUserData from "./useFetchUserData";
@@ -21,7 +20,7 @@ const Content = styled.div`
 `;
 
 export default () => {
-  const { userStore } = useFetchUserData();
+  const { userStore, ridesDispatch, loading } = useFetchUserData();
   const props = useSetCurrentRoute();
   const { openMenu, handleOpenMenu } = useToggleSidebar();
 
@@ -31,17 +30,17 @@ export default () => {
         user={userStore.user}
         toggleSidebar={handleOpenMenu}
         sidebarOpen={openMenu}
+        ridesDispatch={ridesDispatch}
       />
-      <RidesProvider>
-        <Content>
-          <Sidebar
-            {...props}
-            sidebarOpen={openMenu}
-            toggleSidebar={handleOpenMenu}
-          />
-          <Main {...props} />
-        </Content>
-      </RidesProvider>
+      <Content>
+        <Sidebar
+          {...props}
+          sidebarOpen={openMenu}
+          toggleSidebar={handleOpenMenu}
+          dataLoading={loading}
+        />
+        <Main {...props} />
+      </Content>
       <Footer />
     </React.Fragment>
   );
