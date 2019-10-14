@@ -8,9 +8,6 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
-//Load middleware
-const middleware = require("../../middleware");
-
 
 // @route POST api/users/register
 // @desc Register user
@@ -60,7 +57,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then(user => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ email: "Email not found" });
     }
     // Check password
     bcrypt.compare(password, user.password).then(isMatch => {

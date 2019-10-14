@@ -4,17 +4,22 @@ const Schema = mongoose.Schema;
 // Creates a LineString Schema for the bike rides
 
 const RideSchema = new Schema({
-  name: { type: String, required: true },
-  geo: {
-    type: { type: String, default: "LineString" },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
+  title: { type: String, required: true },
+
+  waypoints: {
+    type: { type: String, default: "LineString", required: true },
     coordinates: Array
   },
-  author: {
-      id: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users"
-      },
-      name: String
+  totalDistance: {
+    type: Number
+  },
+  totalTime: {
+    type: Number
   },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }

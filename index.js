@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const keys = require("./config/keys");
 const cors = require("cors");
 const passport = require("passport");
-const users = require("./routes/api/users");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -13,6 +12,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("dev"));
+
+// Import routes
+const rideRoutes = require("./routes/api/ride");
+const users = require("./routes/api/users");
 
 //Database Config
 mongoose
@@ -30,7 +33,10 @@ mongoose
 //Passport config
 app.use(passport.initialize());
 require("./config/passport")(passport);
+
+//Routers
 app.use("/api/users", users);
+app.use("/api", rideRoutes);
 
 //Start Server
 const PORT = keys.PORT;
