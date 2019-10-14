@@ -1,4 +1,4 @@
-const Ride = require("../models/Ride");
+const Ride = require("../models/ride");
 
 // CRUD FOR THE RIDE MODEL
 // GET THE RIDE BY ID
