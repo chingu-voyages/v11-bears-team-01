@@ -14,17 +14,17 @@ export default () => {
 
   const localToken = window.localStorage.getItem("token");
   const token = localToken || store.token;
-
+  
   useEffect(() => {
     if (token) {
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
       const { id, name } = jwt_decode(token);
       userDispatch(setUserData({ id, name }));
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+      //fetching user's rides
       axios
-        .get("/api/rides", config)
+        .get("/api/rides")
         .then(res => {
           if (res.data.length > 0) {
-            console.log(...res.data);
             ridesDispatch(setRidesData(res.data));
           }
         })
