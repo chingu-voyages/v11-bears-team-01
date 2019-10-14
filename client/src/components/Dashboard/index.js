@@ -20,7 +20,7 @@ const Content = styled.div`
 `;
 
 export default () => {
-  const { userStore, ridesDispatch } = useFetchUserData();
+  const { userStore, ridesDispatch, loading } = useFetchUserData();
   const props = useSetCurrentRoute();
   const { openMenu, handleOpenMenu } = useToggleSidebar();
 
@@ -37,6 +37,7 @@ export default () => {
           {...props}
           sidebarOpen={openMenu}
           toggleSidebar={handleOpenMenu}
+          dataLoading={loading}
         />
         <Main {...props} />
       </Content>
