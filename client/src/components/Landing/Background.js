@@ -22,11 +22,12 @@ const icons = [
 ];
 
 export default () => {
-  let rows, cols, bck, icon;
-  const backgroundRef = useRef();
-  const [n, setN] = useState(0);
+  let icon;
+  const backgroundRef = useRef(),
+    [n, setN] = useState(0);
 
   useEffect(() => {
+    let rows, cols, bck;
     bck = backgroundRef.current;
     function setNumberOfIcons() {
       const { height, width } = bck.getBoundingClientRect();

@@ -22,9 +22,9 @@ const reducer = (state, action) => {
   }
 };
 export const UserProvider = props => {
-  const [userStore, dispatch] = useReducer(reducer, initialState);
+  const [userStore, userDispatch] = useReducer(reducer, initialState);
   const value = useMemo(() => {
-    return { userStore, dispatch };
+    return { userStore, userDispatch };
   }, [userStore]);
 
   return (

@@ -20,17 +20,17 @@ const Header = styled.header`
   font-family: "Archivo", sans-serif;
 `;
 
-export default ({ user, toggleSidebar, sidebarOpen }) => {
+export default ({ user, toggleSidebar, sidebarOpen, ridesDispatch }) => {
   const { openMenu, handleOpenMenu } = useOpenMenu();
 
   return (
     <Header>
-      <Section flex={"1"} >
+      <Section flex={"1"}>
         <HamburgerIcon open={sidebarOpen} toggleSidebar={toggleSidebar} />
         <Logo />
       </Section>
       <UserDisplay {...{ user, handleOpenMenu }} />
-      {openMenu && <Dropdown />}
+      {openMenu && <Dropdown ridesDispatch={ridesDispatch} />}
     </Header>
   );
 };

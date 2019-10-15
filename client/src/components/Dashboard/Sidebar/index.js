@@ -5,7 +5,7 @@ import RidesList from "./RidesList/index";
 import CreateButton from "./CreateButton";
 
 const Sidebar = styled.aside`
-  height: 100%;
+  height: 100vh;
   flex: 0 1 20%;
   padding: 25px 30px;
   transition: transform 200ms;
