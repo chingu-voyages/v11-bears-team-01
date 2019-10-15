@@ -82,8 +82,9 @@
   content: "⮃";
 }
 /* results message */
-/* .leaflet-routing-geocoder-result {
-  position: absolute;
+.leaflet-routing-geocoder-result {
+  display: none;
+  /* position: absolute;
   z-index: 2000;
   background: #fff;
   border: 1.8px solid;
@@ -92,5 +93,5 @@
   top: 50vh !important;
   right: 50vw !important;
   transition: all 0.2s ease;
-  border-radius: 2px;
-} */
+  border-radius: 2px; */
+}
