@@ -14,7 +14,7 @@ router.get("/ride/:rideId", isLoggedIn, read);
 router.post("/ride/create", isLoggedIn, create);
 router.delete("/ride/:rideId", isLoggedIn, remove);
 router.put("/ride/:rideId", isLoggedIn, update);
-router.get("/rides", isLoggedIn, list);
+router.post("/rides", isLoggedIn, list);
 
 router.param("rideId", rideById);
 

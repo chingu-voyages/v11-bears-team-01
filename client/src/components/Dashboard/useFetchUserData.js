@@ -24,14 +24,16 @@ export default () => {
       //fetching user's rides
       setLoading(true);
       axios
-        .get("/api/rides")
+        .post("/api/rides")
         .then(res => {
           setLoading(false);
           if (res.data.length > 0) {
             ridesDispatch(setRidesData(res.data));
           }
         })
-        .catch(() => setLoading(false));
+        .catch(err => {
+          setLoading(false);
+        });
     }
   }, [token]);
   return { userStore, ridesDispatch, loading };
