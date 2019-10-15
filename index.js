@@ -10,11 +10,11 @@ const history = require("connect-history-api-fallback");
 const mongoose = require("mongoose");
 
 const app = express();
+app.use(history());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("dev"));
-app.use(history());
 
 // Import routes
 const rideRoutes = require("./routes/api/ride");
