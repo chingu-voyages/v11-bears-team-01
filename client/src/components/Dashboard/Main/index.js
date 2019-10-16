@@ -40,9 +40,7 @@ export default ({ routeStore, routeDispatch, setCoords, coords }) => {
   return (
     <Main>
       <MapContainer>
-        {coords.length > 0 && (
-          <Map {...{ routeStore, routeDispatch, coords }} />
-        )}
+        <Map {...{ routeStore, routeDispatch, coords }} />
       </MapContainer>
       <MapController {...{ dispatch, routeStore, routeDispatch }} />
     </Main>
