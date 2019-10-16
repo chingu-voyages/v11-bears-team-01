@@ -10,7 +10,7 @@ const Map = styled.div`
 `;
 
 export default ({ routeStore, routeDispatch, coords }) => {
-  const { mapRef, routeControl } = useSetMap(coords);
+  const { mapRef, routeControl } = useSetMap();
   useHandleRoute(routeControl, routeStore, routeDispatch, coords);
 
   return <Map ref={mapRef} />;
