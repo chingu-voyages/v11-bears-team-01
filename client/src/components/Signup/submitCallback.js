@@ -11,7 +11,7 @@ export default (inputs, dispatch, props, setInputs) => {
   axios
     .post("/api/users/register", inputs)
     .then(res =>
-      alert(`Registration OK. user: ${res.data.name} email: ${res.data.email}`)
+      alert(`User registered! user: ${res.data.name} email: ${res.data.email}`)
     )
     .then(() => dispatch(registrationOK))
     .then(() => setInputs(resetInputs))
