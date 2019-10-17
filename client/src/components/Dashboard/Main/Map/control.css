@@ -52,7 +52,7 @@
   cursor: pointer;
 }
 .leaflet-routing-remove-waypoint::after {
-  content: "✖";
+  content: "\002716";
   color: rgba(183, 184, 201, 1);
 }
 /* btns */
@@ -67,6 +67,8 @@
   border-radius: 2px;
   margin: 2px;
   float: left;
+  min-width: 24px;
+  min-height: 24px;
 }
 .add-waypoint-btn:hover,
 .leaflet-routing-reverse-waypoints:hover {
@@ -75,11 +77,11 @@
 }
 /* add waypoint btn */
 .add-waypoint-btn::after {
-  content: "🞣";
+  content: "\002b";
 }
 /* reverse waypoints btn */
 .leaflet-routing-reverse-waypoints::after {
-  content: "⮃";
+  content: "\0021c5";
 }
 /* results message */
 .leaflet-routing-geocoder-result {
@@ -94,4 +96,20 @@
   right: 50vw !important;
   transition: all 0.2s ease;
   border-radius: 2px; */
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .leaflet-routing-container.leaflet-bar.leaflet-control {
+    margin-bottom: 15px;
+  }
+  .leaflet-control-attribution.leaflet-control {
+    /* display: none; */
+    font-size: 9.5px;
+  }
+  .add-waypoint-btn,
+  .leaflet-routing-reverse-waypoints {
+    min-width: 26px;
+    min-height: 26px;
+    font-size: 15px;
+  }
 }

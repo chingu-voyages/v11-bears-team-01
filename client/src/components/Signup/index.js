@@ -75,7 +75,7 @@ const SignUp = props => {
         </MainActionButton>
       </Form>
       <StyledH4>
-        Don't have an account? <StyledLink to="/login">Sign in</StyledLink>
+        Already have an account? <StyledLink to="/login">Sign in</StyledLink>
       </StyledH4>
     </Landing>
   );

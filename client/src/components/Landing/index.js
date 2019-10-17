@@ -25,12 +25,11 @@ const AuthWrapper = styled.div`
 `;
 const AppName = styled.h1`
   font-size: 25px;
-  /* color: #1c01ff; */
-  -webkit-text-stroke: 1px black;
-  color: white;
-  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
-    -1px 1px 0 #000, 1px 1px 0 #000;
-  letter-spacing: 1.5px;
+  padding: 20px;
+  color: rgba(152, 152, 169, 0.7);
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 export default ({ children }) => {
@@ -38,7 +37,7 @@ export default ({ children }) => {
     <LandingLayout>
       <Hero />
       <AuthWrapper>
-        <AppName>Tripia</AppName>
+        <AppName>Map and save all your rides</AppName>
         {children}
       </AuthWrapper>
     </LandingLayout>
