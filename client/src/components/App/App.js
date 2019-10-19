@@ -1,9 +1,12 @@
 import React from "react";
 import { AuthProvider } from "../../context/AuthContext";
 import { UserProvider } from "../../context/UserContext";
-import { RidesProvider } from "../../context/RidesContext";
-
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from "react-router-dom";
 //components
 import SignIn from "../Signin/index";
 import SignUp from "../Signup/index";
@@ -15,16 +18,17 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <Router>
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
-          <Route exact path="/login" component={SignIn} />
-          <Route exact path="/sign-up" component={SignUp} />
-          <UserProvider>
-            <RidesProvider>
+        <UserProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/" render={() => <Redirect to="/login" />} />
+              <Route exact path="/login" component={SignIn} />
+              <Route exact path="/sign-up" component={SignUp} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </RidesProvider>
-          </UserProvider>
-        </Router>
+              <Route render={() => <Redirect to="/dashboard" />} />
+            </Switch>
+          </Router>
+        </UserProvider>
       </div>
     </AuthProvider>
   );

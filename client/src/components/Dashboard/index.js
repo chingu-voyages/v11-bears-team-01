@@ -9,6 +9,7 @@ import Header from "./Header/index";
 import Sidebar from "./Sidebar/index";
 import Main from "./Main/index";
 import Footer from "./Footer/index";
+import { RidesProvider } from "../../context/RidesContext";
 
 const Content = styled.div`
   display: flex;
@@ -19,7 +20,12 @@ const Content = styled.div`
   right: 0;
 `;
 
-export default () => {
+export default () => (
+  <RidesProvider>
+    <Dashboard />
+  </RidesProvider>
+);
+export const Dashboard = () => {
   const { userStore, ridesDispatch, loading } = useFetchUserData();
   const props = useSetCurrentRoute();
   const { openMenu, handleOpenMenu } = useToggleSidebar();
