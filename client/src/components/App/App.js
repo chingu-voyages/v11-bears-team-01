@@ -7,6 +7,7 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
+import Notifications from "react-notify-toast";
 //components
 import SignIn from "../Signin/index";
 import SignUp from "../Signup/index";
@@ -18,6 +19,7 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
+        <Notifications />
         <UserProvider>
           <Router>
             <Switch>
