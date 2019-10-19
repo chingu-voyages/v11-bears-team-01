@@ -1,4 +1,5 @@
 import axios from "axios";
+import { notify } from "react-notify-toast";
 import {
   loading,
   resetInputs,
@@ -11,7 +12,7 @@ export default (inputs, dispatch, props, setInputs) => {
   axios
     .post("/api/users/register", inputs)
     .then(res =>
-      alert(`User registered! user: ${res.data.name} email: ${res.data.email}`)
+      notify.show(`User registered! email: ${res.data.email}`, "success", 3000)
     )
     .then(() => dispatch(registrationOK))
     .then(() => setInputs(resetInputs))
@@ -19,6 +20,3 @@ export default (inputs, dispatch, props, setInputs) => {
     .catch(err => dispatch(signUpErrors(err.response.data)))
     .then(() => dispatch(loading(false)));
 };
-
-//we should put something else to notify users from succesful registration.
-//This just redirects to /login if there's no errors
