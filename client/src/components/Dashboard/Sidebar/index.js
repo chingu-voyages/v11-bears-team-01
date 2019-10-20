@@ -13,6 +13,9 @@ const Sidebar = styled.aside`
   max-width: 370px;
   @media (max-width: 1000px) {
     position: absolute;
+    height: 95%;
+    top: 0;
+    bottom: 0;
     z-index: 2000;
     width: 70vw;
     box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);

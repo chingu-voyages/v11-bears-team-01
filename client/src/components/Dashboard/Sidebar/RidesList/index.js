@@ -18,7 +18,7 @@ const Title = styled(StyledH4)`
 export default props => {
   return (
     <Container>
-      <Title>All rides</Title>
+      <Title noLabel>All rides</Title>
       <Nav {...props} />
     </Container>
   );
