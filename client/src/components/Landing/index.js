@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import Hero from "./Hero";
-import { Route } from "styled-icons/fa-solid/Route";
+import MainLabel from "./MainLabel";
 
 const LandingLayout = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: row;
+  width: 100vw;
+  height: 100vh;
   @media (max-width: 768px) {
     justify-content: center;
+    width: auto;
+    height: auto;
   }
 `;
 const AuthWrapper = styled.div`
   flex-basis: 37.5%;
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +23,17 @@ const AuthWrapper = styled.div`
   @media (max-width: 1200px) {
     flex-basis: 50%;
   }
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
 `;
-const AppName = styled.h1`
-  font-size: 25px;
-  padding: 20px;
-  color: rgba(152, 152, 169, 0.7);
+const AppName = styled(MainLabel)`
+  font-size: 23px;
+  padding: 15px;
   @media (min-width: 768px) {
     display: none;
   }
@@ -37,11 +44,9 @@ export default ({ children }) => {
     <LandingLayout>
       <Hero />
       <AuthWrapper>
-        <AppName>Map and save all your rides</AppName>
+        <AppName>Map & save all your rides</AppName>
         {children}
       </AuthWrapper>
     </LandingLayout>
   );
 };
-
-//AuthWrapper holds either sign up or sign in forms
