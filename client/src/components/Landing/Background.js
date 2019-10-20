@@ -51,4 +51,3 @@ export default () => {
     </Background>
   );
 };
-//this whole component shouldnt rerender when the auth wrapper changes state but ITS FUN

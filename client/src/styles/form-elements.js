@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { label } from "./mixins";
 import { Link } from "react-router-dom";
 
 export const Form = styled.form`
@@ -14,13 +15,22 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   margin-bottom: 30px;
+  @media (max-width: 768px) {
+    max-width: 75vw;
+  }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   font-size: 30px;
   line-height: 40px;
   font-weight: 500;
   color: #131e41;
+  @media (max-width: 768px) {
+    ${label}
+    padding: 5px 10px;
+    margin: 10px;
+    font-size: 25px;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -33,7 +43,7 @@ export const Input = styled.input`
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
-  width: 288px;
+  width: 90%;
   padding: 0 15px;
   transition: 0.2s all cubic-bezier(0.4, 0, 0.2, 1);
   color: #131e41;
@@ -50,6 +60,9 @@ export const Input = styled.input`
   &:focus {
     border-color: #1c01ff;
     outline: none;
+  }
+  @media (max-width: 768px) {
+    /* max-width: 90vw; */
   }
 `;
 
