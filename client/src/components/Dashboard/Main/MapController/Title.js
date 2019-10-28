@@ -36,5 +36,3 @@ export default ({ routeDispatch, routeStore, title, setTitle }) => {
     </React.Fragment>
   );
 };
-
-//set title limit

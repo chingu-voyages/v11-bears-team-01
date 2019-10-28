@@ -5,6 +5,7 @@ import { RidesContext } from "../../context/RidesContext";
 import { AuthContext } from "../../context/AuthContext";
 import { setUserData } from "../../utils/actions";
 import jwt_decode from "jwt-decode";
+import setAxiosHeader from "../../utils/setToken";
 import axios from "axios";
 
 export default () => {
@@ -18,7 +19,7 @@ export default () => {
 
   useEffect(() => {
     if (token) {
-      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
+      setAxiosHeader(token);
       const { id, name } = jwt_decode(token);
       userDispatch(setUserData({ id, name }));
       //fetching user's rides
