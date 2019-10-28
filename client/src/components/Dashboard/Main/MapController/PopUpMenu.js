@@ -65,10 +65,7 @@ export default ({ dispatch, routeStore, routeDispatch }) => {
       {open && (
         <PopUpMenu>
           {!loading && (
-            <PopUpMenuItem
-              onClick={handleDelete}
-              disabled={createMode ? true : false}
-            >
+            <PopUpMenuItem onClick={handleDelete} disabled={createMode}>
               <Trash size={"15px"} style={{ marginRight: "5px" }} />
               Delete route
             </PopUpMenuItem>

@@ -64,7 +64,7 @@ export default ({
                 style={style.ListButton}
                 data-id={ride._id}
                 onClick={handleClick}
-                selected={currentRoute._id === ride._id ? true : false}
+                selected={currentRoute._id === ride._id}
               >
                 {ride.title}
               </ListButton>

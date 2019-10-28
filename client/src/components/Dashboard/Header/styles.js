@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { User } from "styled-icons/boxicons-regular/User";
 import { KeyboardArrowDown } from "styled-icons/material/KeyboardArrowDown";
-import { LogOut } from "styled-icons/boxicons-regular/LogOut";
 import { colors } from "../../../styles/vars";
 
 //container for each section of the header
@@ -40,20 +39,4 @@ export const Wrapper = styled.div`
     color: ${colors.blue};
     transition: all 0.4s ease;
   }
-`;
-//dropdown menu
-export const DropdownMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 4em;
-  right: 15px;
-  height: auto;
-  width: 250px;
-  background-color: #fff;
-  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.03);
-`;
-
-export const LogOutIcon = styled(LogOut)`
-  margin-right: 7px;
 `;

@@ -25,7 +25,7 @@ export default () => (
     <Dashboard />
   </RidesProvider>
 );
-export const Dashboard = () => {
+const Dashboard = () => {
   const { userStore, ridesDispatch, loading } = useFetchUserData();
   const props = useSetCurrentRoute();
   const { openMenu, handleOpenMenu } = useToggleSidebar();
