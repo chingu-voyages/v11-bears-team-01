@@ -10,6 +10,7 @@ const Footer = styled.footer`
   position: relative;
   bottom: 0;
   width: 100vw;
+  max-width: 100%;
   border-top: 1px solid rgba(205, 206, 228, 0.6);
 `;
 
