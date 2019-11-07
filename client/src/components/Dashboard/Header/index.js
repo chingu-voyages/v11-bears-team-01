@@ -14,6 +14,7 @@ const Header = styled.header`
   top: 0;
   left: 0;
   width: 100vw;
+  max-width: 100%;
   height: 4em;
   background-color: #fff;
   box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.1);
